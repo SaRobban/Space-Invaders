@@ -1,6 +1,6 @@
 class Entity {
 	public PVector position;
-	public PVector velocity = new PVector();
+	public PVector direction = new PVector();
 
 	// Width and height of the entity.
 	public float size;
