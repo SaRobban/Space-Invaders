@@ -1,9 +1,6 @@
 class Sprite{
 	String type;
-	PVector position;
-
-
-
+	PVector localPosition;
 	String enemy = 	new String("Enemy");
 	String player = new String("Player");
 	String bullet = new String("Bullet");
@@ -15,21 +12,21 @@ class Sprite{
 
 	Sprite(String type, PVector pos){
 		this.type = type;
-		position = pos;
+		localPosition = pos;
 	}
 
 	Sprite(String type, float x, float y){
 		this.type = type;
-		position = new PVector(x,y);
+		localPosition = new PVector(x,y);
 	}
 
 
 	void setPos(PVector pos){
-		this.position = pos;
+		this.localPosition = pos;
 	}
 
 	void setMoveStep(PVector move){
-		this.position.add(move);
+		this.localPosition.add(move);
 	}
 
 
@@ -46,18 +43,18 @@ class Sprite{
 	void drawEnemy(){
 		noStroke();
 		fill(colEnemy);
-		circle(position.x, position.y, 20);
+		circle(localPosition.x, localPosition.y, 20);
 	}
 
 	void drawPlayer(){
 		noStroke();
 		fill(colPlayer);
-		circle(position.x, position.y, 20);
+		circle(localPosition.x, localPosition.y, 20);
 	}
 
 	void drawBullet(){
 		noStroke();
 		fill(colBullet);
-		circle(position.x, position.y, 5);
+		circle(localPosition.x, localPosition.y, 5);
 	}
 }
