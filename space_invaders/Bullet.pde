@@ -1,17 +1,20 @@
 class Bullet extends Entity{
-	PVector velocity;
-
+	float speed;
 	Sprite bulletSprite;
-	Bullet(PVector position, PVector velocity, float size){
+
+	Bullet(PVector position, PVector direction, float speed, float size){
 		super(position.x, position.y, size);
-		this.velocity = velocity;
+		super.direction = direction;
+		this.speed = speed;
 		bulletSprite = new Sprite("Bullet", position);
 	}
 
 	Bullet(float posX, float posY, float velX, float velY, float size){
 		super(posX, posY, size);
-		bulletSprite = new Sprite("Bullet", position);
-		this.velocity = new PVector(velX, velY);
+		this.bulletSprite = new Sprite("Bullet", position);
+		PVector velocity = new PVector(velX, velY);
+		this.speed = velocity.mag();
+		super.direction = velocity.normalize();
 	}
 
 	void setPositiion(PVector pos){
