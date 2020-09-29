@@ -45,13 +45,12 @@ class Shield extends Entity{
 		int otherX = (int)otherPos.x;
 		int otherY = (int)otherPos.y;
 
+		//TODO: Extra checkup to prevent frame overshoot in pixel collision
 		boolean collided = false;
 		for(int x = 0; x < length -1; x++){
 			for(int y = 0; y < length -1; y++){
 				if(pixs[x][y].active){
-					print("pther pos = " + otherPos + "  blockPos = " + pixs[x][y].position +"\n");
 					if(otherX == pixs[x][y].position.x && otherY == pixs[x][y].position.y){
-						print("coltest");
 						makeHole(otherPos);
 						collided = true;
 					}
