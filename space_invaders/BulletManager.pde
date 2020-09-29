@@ -52,8 +52,14 @@ class BulletManager{
 
 	public void checkCollision(){
 		for(int i = 0; i < bullets.size(); i++){
-			if(shield.colliderTest(bullets.get(i).position)){
+			Bullet bullet = bullets.get(i);
+			if(shield.colliderTest(bullet.position)){
 				removeThisBullet(i);
+			}
+
+			if (player.isCollidingWith(bullet)) {
+				bullets.remove(i);
+				player.getShot();
 			}
 		}
 	}
