@@ -9,7 +9,7 @@ class Player extends Entity {
 	}
 
 	public Player(float x, float y, float size, float speed) {
-		super(x, y, size);
+		super(x, y, size, size);
 		this.speed = speed;
 	}
 
