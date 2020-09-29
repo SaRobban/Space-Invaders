@@ -9,7 +9,7 @@ class Entity {
 		this(x, y, width, height, 0, -1);
 	}
 
-	public Entity(float x, float y, float width, float height, float directionX, float directionY) {
+	public Entity(float x, float y, float directionX, float directionY, float width, float height) {
 		position = new PVector(x, y);
 		direction = new PVector(directionX, directionY);
 		this.size = new PVector(width, height);
@@ -19,7 +19,7 @@ class Entity {
 		this(position.x, position.y, size.x, size.y);
 	}
 
-	public Entity(PVector position, PVector size, PVector direction) {
+	public Entity(PVector position, PVector direction, PVector size) {
 		this(position.x, position.y, size.x, size.y, direction.x, direction.y);
 	}
 
