@@ -3,24 +3,24 @@ class Entity {
 	public PVector direction;
 
 	// Width and height of the entity.
-	public float size;
+	public PVector size;
 
-	public Entity(float x, float y, float size) {
-		this(x, y, size, 0, -1);
+	public Entity(float x, float y, float width, float height) {
+		this(x, y, width, height, 0, -1);
 	}
 
-	public Entity(float x, float y, float size, float directionX, float directionY) {
+	public Entity(float x, float y, float width, float height, float directionX, float directionY) {
 		position = new PVector(x, y);
 		direction = new PVector(directionX, directionY);
-		this.size = size;
+		this.size = new PVector(width, height);
 	}
 
-	public Entity(PVector position, float size) {
-		this(position.x, position.y, size);
+	public Entity(PVector position, PVector size) {
+		this(position.x, position.y, size.x, size.y);
 	}
 
-	public Entity(PVector position, float size, PVector direction) {
-		this(position.x, position.y, size, direction.x, direction.y);
+	public Entity(PVector position, PVector size, PVector direction) {
+		this(position.x, position.y, size.x, size.y, direction.x, direction.y);
 	}
 
 	public void update(float deltaTime) {}
@@ -29,8 +29,8 @@ class Entity {
 
 	public boolean isCollidingWith(Entity other) {
 		return rectangleCollision(
-			position.x, position.y, size, size,
-			other.position.x, other.position.y, other.size, other.size
+			position.x, position.y, size.x, size.y,
+			other.position.x, other.position.y, other.size.x, other.size.y
 		);
 	}
 }
