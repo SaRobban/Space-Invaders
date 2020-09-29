@@ -8,14 +8,14 @@ class BulletManeger{
 	}
 
 
-	public void createBullet(PVector position, PVector direction, float speed, float size){
+	public void createBullet(PVector position, PVector direction, float speed, PVector size){
 		Bullet newBullet = new Bullet(position, direction, speed, size, idOfBullets);
 		bullets.add(newBullet);
 		idOfBullets++;
 	}
 
 
-	public void createBullet(float posX, float posY, float dirX, float dirY, float speed, float size){
+	public void createBullet(float posX, float posY, float dirX, float dirY, float speed, PVector size){
 		Bullet newBullet = new Bullet(new PVector(posX,posY), new PVector(dirX, dirY), speed, size, idOfBullets);
 		bullets.add(newBullet);
 		idOfBullets++;
