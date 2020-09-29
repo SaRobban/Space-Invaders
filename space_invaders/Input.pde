@@ -17,7 +17,7 @@ class Input {
 		else if (keyCode == RIGHT || key == 'd') {
 			right = pressed;
 		}
-		else if (keyCode == UP || key == 'w') {
+		else if (keyCode == UP || key == 'w' || key == ' ') {
 			fire = pressed;
 		}
 	}

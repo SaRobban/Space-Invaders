@@ -33,7 +33,8 @@ class Sprite{
 	void drawEnemy(){
 		noStroke();
 		fill(colEnemy);
-		circle(localPosition.x, localPosition.y, 20);
+		ellipseMode(CORNER);
+		ellipse(localPosition.x, localPosition.y, ENEMY_SIZE.x, ENEMY_SIZE.y);
 	}
 
 	void drawPlayer(){
