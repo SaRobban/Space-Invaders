@@ -1,17 +1,26 @@
 class EnemyGroup {
 	static final float WALL_PADDING = 60;
+	static final float SHOOT_DELAY = 1f;
 
 	public PVector position;
 	public PVector size;
 	public PVector velocity;
-	public ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+	public int numX, numY;
+	public Enemy[][] enemies;
+	public int enemyCount;
 
-	private PVector newPosition = new PVector();
+	private float shootTimer;
 
-	public EnemyGroup(PVector position, PVector size, PVector velocity) {
+	public EnemyGroup(PVector position, PVector size, PVector velocity, int numX, int numY) {
 		this.position = position;
 		this.size = size;
 		this.velocity = velocity;
+		this.numX = numX;
+		this.numY = numY;
+		enemies = new Enemy[numX][numY];
+		enemyCount = numX * numY;
+
+		shootTimer = SHOOT_DELAY;
 	}
 
 	public void update(float dt) {
@@ -29,10 +38,48 @@ class EnemyGroup {
 
 		float deltaX = newX - position.x;
 		float deltaY = newY - position.y;
-		for (Enemy enemy : enemies) {
-			enemy.position.add(deltaX, deltaY);
+		position.set(newX, newY);
+
+		for (int y = 0; y < numY; y++)
+		for (int x = 0; x < numX; x++) {
+			Enemy enemy = enemies[x][y];
+			if (enemy != null)
+				enemy.position.add(deltaX, deltaY);
 		}
 
-		position.set(newX, newY);
+		handleShooting(dt);
+	}
+
+	public void onEnemyDead(Enemy enemy) {
+		for (int y = 0; y < numY; y++)
+		for (int x = 0; x < numX; x++) {
+			if (enemies[x][y] == enemy) {
+				enemies[x][y] = null;
+				enemyCount -= 1;
+			}
+		}
+	}
+
+	private void handleShooting(float dt) {
+		shootTimer -= dt;
+		if (shootTimer <= 0) {
+			shootTimer = SHOOT_DELAY;
+			shoot();
+		}
+	}
+
+	private void shoot() {
+		// TODO: Bad random loop, make better.
+		random_loop:
+		while (true) {
+			int column = (int)random(numX);
+			for (int y = numY - 1; y >= 0; y--) {
+				Enemy enemy = enemies[column][y];
+				if (enemy != null) {
+					enemy.shoot();
+					break random_loop;
+				}
+			}
+		}
 	}
 }

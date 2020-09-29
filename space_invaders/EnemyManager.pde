@@ -8,7 +8,7 @@ class EnemyManager{
 	}
 
 
-	public void createEnemyGroup(int numX, int numY, float positionY, PVector enemySize, PVector enemySpeed) {
+	public void createEnemyGroup(float positionY, PVector enemySize, PVector enemySpeed, int numX, int numY) {
 		float spacing = ENEMY_FORMATION_SPACING;
 		float strideX = enemySize.x + spacing;
 		float strideY = enemySize.y + spacing;
@@ -16,15 +16,15 @@ class EnemyManager{
 		PVector groupSize = new PVector(strideX * numX - spacing, strideY * numY - spacing);
 		PVector groupPos = new PVector((width - groupSize.x) / 2, positionY);
 
-		EnemyGroup group = new EnemyGroup(groupPos, groupSize, enemySpeed);
+		EnemyGroup group = new EnemyGroup(groupPos, groupSize, enemySpeed, numX, numY);
 
 		for (int y = 0; y < numY; y++)
 		for (int x = 0; x < numX; x++) {
 			PVector pos = new PVector(groupPos.x + strideX * x, groupPos.y + strideY * y);
-			Enemy enemy = new GroupEnemy(pos, new PVector(0, 1), ENEMY_SIZE.copy());
+			Enemy enemy = new GroupEnemy(pos, new PVector(0, 1), ENEMY_SIZE.copy(), group);
 
 			enemyList.add(enemy);
-			group.enemies.add(enemy);
+			group.enemies[x][y] = enemy;
 		}
 
 		groups.add(group);
@@ -51,8 +51,15 @@ class EnemyManager{
 
 
 	public void update(float deltaTime){
-		for (EnemyGroup group : groups) {
+		for (int i = 0; i < groups.size(); i++) {
+			EnemyGroup group = groups.get(i);
 			group.update(deltaTime);
+
+			// Remove empty groups.
+			if (group.enemyCount <= 0) {
+				groups.remove(i);
+				i--;
+			}
 		}
 
 		for (int i = 0; i < enemyList.size(); i++){

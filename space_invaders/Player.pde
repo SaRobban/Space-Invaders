@@ -47,6 +47,6 @@ class Player extends Entity {
 
 	private void fire() {
 		PVector bulletPos = new PVector(position.x + size.x / 2 - BULLET_SIZE.x / 2, position.y - size.y *0.5 - 1 - BULLET_SIZE.y *0.5);
-		bulletManager.createBullet(bulletPos, direction.copy(), BULLET_SIZE.copy(), BULLET_SPEED);
+		bulletManager.createBullet(bulletPos, direction.copy(), BULLET_SIZE.copy(), BULLET_SPEED, Faction.PLAYER);
 	}
 }
