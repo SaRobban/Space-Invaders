@@ -11,22 +11,22 @@ class Bullet extends Entity{
 	}
 
 
-	void setPosition(PVector pos){
+	public void setPosition(PVector pos){
 		position = pos;
 	}
 
 
-	void setPosition(float posX, float posY){
+	public void setPosition(float posX, float posY){
 		position.set(posX, posY);
 	}
 
-
-	void moveStep(float deltaTime){
+	@Override
+	public void update(float deltaTime){
 		position.add(PVector.mult(direction, speed * deltaTime));
 	}
 
-
-	void draw(){
+	@Override
+	public void draw(){
 		bulletSprite.draw(position);
 	}
 }
