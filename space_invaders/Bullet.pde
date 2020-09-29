@@ -4,7 +4,7 @@ class Bullet extends Entity{
 	Sprite bulletSprite;
 
 	Bullet(PVector position, PVector direction, float speed, PVector size, int id){
-		super(position.x, position.y, size);
+		super(position.x, position.y, size.x, size.y);
 		super.direction = direction;
 		this.speed = speed;
 		bulletSprite = new Sprite("Bullet");

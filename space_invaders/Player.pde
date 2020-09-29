@@ -35,7 +35,7 @@ class Player extends Entity {
 		// TODO: Replace with player sprite.
 		pushMatrix();
 			translate(position.x, position.y);
-			rect(0, 0, size, size);
+			rect(0, 0, size.x, size.y);
 		popMatrix();
 	}
 

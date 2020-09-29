@@ -37,7 +37,6 @@ class BulletManager{
 	}
 
 
-	@Override
 	public void update(float deltaTime){
 		for (int i = 0; i < bullets.size(); i++){
 			bullets.get(i).update(deltaTime);
@@ -45,7 +44,6 @@ class BulletManager{
 	}
 
 
-	@Override
 	public void draw(){
 		for (int i = 0; i < bullets.size(); i++){
 			bullets.get(i).draw();
