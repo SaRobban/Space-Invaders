@@ -15,7 +15,7 @@ void setup() {
 	player = new Player(400, 740, PLAYER_SIZE.x, PLAYER_SIZE.y, 240);
 	shield = new Shield(new PVector(500, 500), 50);
 
-	enemyManager.createEnemyGroup(8, 4, 100, ENEMY_SIZE, ENEMY_SPEED);
+	enemyManager.createEnemyGroup(100, ENEMY_SIZE, ENEMY_SPEED, 8, 4);
 }
 
 void update() {

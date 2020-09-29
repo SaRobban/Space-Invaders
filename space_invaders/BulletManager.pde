@@ -1,7 +1,9 @@
+enum Faction {
+	ENEMY, PLAYER
+}
+
 class BulletManager{
 	public ArrayList<Bullet> bulletsList;
-	int bulletNumber = 0;
-
 
 	public BulletManager(){
 		bulletsList = new ArrayList<Bullet>();
@@ -12,23 +14,25 @@ class BulletManager{
 	}
 
 
-	public void createBullet(PVector position, PVector direction, PVector size, float speed){
-		Bullet newBullet = new Bullet(position, direction, size, speed, bulletNumber);
+	public void createBullet(PVector position, PVector direction, PVector size, float speed, Faction faction){
+		Bullet newBullet = new Bullet(position, direction, size, speed, faction);
 		bulletsList.add(newBullet);
-		bulletNumber++;
 	}
 
 
-	public void createBullet(float posX, float posY, float dirX, float dirY, float sizeX, float sizeY, float speed){
-		Bullet newBullet = new Bullet(new PVector(posX,posY), new PVector(dirX, dirY), new PVector(sizeX, sizeY), speed, bulletNumber);
+	public void createBullet(float posX, float posY, float dirX, float dirY, float sizeX, float sizeY, float speed, Faction faction){
+		Bullet newBullet = new Bullet(new PVector(posX,posY), new PVector(dirX, dirY), new PVector(sizeX, sizeY), speed, faction);
 		bulletsList.add(newBullet);
-		bulletNumber++;
 	}
 
 
-	public void removeThisBullet(Bullet b){
-		vFXManager.createABoom(b.position);
-		bulletsList.remove(b);
+	public void removeThisBullet(Bullet b) {
+		removeThisBullet(bulletsList.indexOf(b));
+	}
+
+	public void removeThisBullet(int bulletIndex) {
+		vFXManager.createABoom(bulletsList.get(bulletIndex).position);
+		bulletsList.remove(bulletIndex);
 	}
 
 
@@ -47,29 +51,39 @@ class BulletManager{
 		}
 	}
 
-	public void checkCollision(){
-		for(int i = 0; i < bulletsList.size(); i++){
-			
+	public void checkCollision() {
+		bullet_loop:
+		for (int i = 0; i < bulletsList.size(); i++) {
 			Bullet bullet = bulletsList.get(i);
 
-			if(shield.colliderTest(bullet.position)){
-				removeThisBullet(bulletsList.get(i));// bulletsList.remove(i);
-				i -= 1;
-			}
-			else if (player.isCollidingWith(bullet)) {
-				bulletsList.remove(i);
+			// Player collision.
+			if (bullet.faction != Faction.PLAYER && player.isCollidingWith(bullet)) {
+				removeThisBullet(i);
 				player.getShot();
+				i--;
+				continue;
 			}
-			else {
+
+			// Enemy collision.
+			if (bullet.faction != Faction.ENEMY) {
 				for (int j = 0; j < enemyManager.enemyList.size(); j++) {
 					Enemy enemy = enemyManager.enemyList.get(j);
 					if (enemy.isCollidingWith(bullet)) {
-						bulletsList.remove(i);
+						removeThisBullet(i);
 						enemyManager.enemyList.remove(j);
-						i -= 1;
-						j -= 1;
+						enemy.getShot();
+						i--;
+						j--;
+						continue bullet_loop;
 					}
 				}
+			}
+
+			// Shield collision.
+			if (shield.colliderTest(bullet.position)) {
+				removeThisBullet(i);
+				i--;
+				continue;
 			}
 		}
 	}

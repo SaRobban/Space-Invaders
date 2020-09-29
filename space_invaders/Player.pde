@@ -2,6 +2,8 @@ class Player extends Entity {
 	private static final float FIRE_DELAY = 0.5f;
 
 	public float speed;
+	public int health = PLAYER_HEALTH;
+
 	private float fireDelay;
 	private Sprite sprite = new Sprite("Player");
 
@@ -35,11 +37,16 @@ class Player extends Entity {
 
 	public void getShot() {
 		println("Player got shot");
-		gameOver = true;
+		if (health <= 0) return;
+
+		health -= 1;
+		if (health == 0) {
+			gameOver = true;
+		}
 	}
 
 	private void fire() {
 		PVector bulletPos = new PVector(position.x + size.x / 2 - BULLET_SIZE.x / 2, position.y - size.y *0.5 - 1 - BULLET_SIZE.y *0.5);
-		bulletManager.createBullet(bulletPos, direction.copy(), BULLET_SIZE.copy(), BULLET_SPEED);
+		bulletManager.createBullet(bulletPos, direction.copy(), BULLET_SIZE.copy(), BULLET_SPEED, Faction.PLAYER);
 	}
 }

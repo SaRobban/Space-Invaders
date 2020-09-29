@@ -11,4 +11,13 @@ class Enemy extends Entity{
 	public void draw(){
 		sprite.draw(position);
 	}
+
+	public void getShot() {}
+
+	public void shoot() {
+		PVector bulletPos = new PVector(
+			position.x + size.x / 2,
+			position.y + size.y);
+		bulletManager.createBullet(bulletPos, direction.copy(), BULLET_SIZE.copy(), BULLET_SPEED, Faction.ENEMY);
+	}
 }
