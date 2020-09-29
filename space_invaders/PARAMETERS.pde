@@ -4,6 +4,7 @@ final PVector BULLET_SIZE = new PVector(5, 5);
 
 // Player
 final PVector PLAYER_SIZE = new PVector(30, 30);
+final int PLAYER_HEALTH = 3;
 
 // Enemies
 final PVector ENEMY_SPEED = new PVector(50, 5);
