@@ -2,6 +2,7 @@ Clock clock = new Clock();
 Input input = new Input();
 BulletManager bulletManager = new BulletManager();
 EnemyManager enemyManager = new EnemyManager();
+VFXManager vFXManager = new VFXManager();
 Shield shield;
 Player player;
 
@@ -23,6 +24,7 @@ void update() {
 	player.update(deltaTime);
 	enemyManager.update(deltaTime);
 	bulletManager.update(deltaTime);
+	vFXManager.update(deltaTime);
 }
 
 void draw() {
@@ -33,7 +35,7 @@ void draw() {
 	shield.draw();
 	enemyManager.draw();
 	player.draw();
-
+	vFXManager.draw();
 	drawUI();
 }
 
