@@ -5,38 +5,28 @@ class Sprite{
 	String player = new String("Player");
 	String bullet = new String("Bullet");
 
-
 	color colEnemy =  color(255, 0, 0, 255);
 	color colPlayer = color(0, 255, 0, 255);
 	color colBullet = color(0, 0, 255, 255);
 
-	Sprite(String type, PVector pos){
+	Sprite(String type){
 		this.type = type;
+		this.localPosition = new PVector(0,0);
+	}
+
+
+	void draw(PVector pos){
+		
 		localPosition = pos;
-	}
 
-	Sprite(String type, float x, float y){
-		this.type = type;
-		localPosition = new PVector(x,y);
-	}
-
-
-	void setPos(PVector pos){
-		this.localPosition = pos;
-	}
-
-	void setMoveStep(PVector move){
-		this.localPosition.add(move);
-	}
-
-
-	void draw(){
 		if(type.equals(enemy)){
 			drawEnemy();
 		}else if(type.equals(bullet)){
 			drawBullet();
-		}else{
+		}else if(type.equals(player)){
 			drawPlayer();
+		}else{
+			drawPixel();
 		}
 	}
 
@@ -56,5 +46,11 @@ class Sprite{
 		noStroke();
 		fill(colBullet);
 		circle(localPosition.x, localPosition.y, 5);
+	}
+
+	void drawPixel(){
+		noStroke();
+		fill(colPlayer);
+		rect(localPosition.x, localPosition.y, 1, 1);
 	}
 }
