@@ -48,7 +48,7 @@ class BulletManager{
 		for(int i = 0; i < bulletsList.size(); i++){
 			Bullet bullet = bulletsList.get(i);
 			if(shield.colliderTest(bullet.position)){
-				removeThisBullet(i);
+				bulletsList.remove(i);
 			}
 
 			if (player.isCollidingWith(bullet)) {
