@@ -4,7 +4,7 @@ class Shield extends Entity{
 	DestructiblePixel[][] pixs;
 
 	Shield(PVector pos, int size){
-		super(pos, size);
+		super(pos, new PVector(size, size));
 		this.length = size;
 		pixs = new DestructiblePixel[size][size];
 
@@ -30,8 +30,8 @@ class Shield extends Entity{
 
 	//Check if inside square
 	private boolean checkRect(PVector otherPos) {
-		if(otherPos.x > position.x && otherPos.x < position.x + size){
-			if(otherPos.y > position.y && otherPos.y < position.y + size){
+		if(otherPos.x > position.x && otherPos.x < position.x + size.x){
+			if(otherPos.y > position.y && otherPos.y < position.y + size.y){
 				return true;
 			}else{
 				return false;
@@ -41,7 +41,7 @@ class Shield extends Entity{
 		}
 	}
 
-	
+
 	private boolean checkCollision(PVector otherPos){
 		boolean collided = false;
 		for(int x = 0; x < length -1; x++){

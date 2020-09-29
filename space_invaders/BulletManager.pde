@@ -1,9 +1,9 @@
-class BulletManeger{
+class BulletManager{
 	public ArrayList<Bullet> bulletsList;
 	int bulletNumber = 0;
 
 
-	public BulletManeger(){
+	public BulletManager(){
 		bulletsList = new ArrayList<Bullet>();
 	}
 
@@ -44,13 +44,17 @@ class BulletManeger{
 		}
 	}
 
-/*
 	public void checkCollision(){
 		for(int i = 0; i < bulletsList.size(); i++){
-			if(shield.colliderTest(bulletsList.get(i).position)){
+			Bullet bullet = bulletsList.get(i);
+			if(shield.colliderTest(bullet.position)){
 				removeThisBullet(i);
+			}
+
+			if (player.isCollidingWith(bullet)) {
+				bulletsList.remove(i);
+				player.getShot();
 			}
 		}
 	}
-	*/
 }

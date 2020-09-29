@@ -16,7 +16,7 @@ class Sprite{
 
 
 	void draw(PVector pos){
-		
+
 		localPosition = pos;
 
 		if(type.equals(enemy)){
@@ -39,13 +39,15 @@ class Sprite{
 	void drawPlayer(){
 		noStroke();
 		fill(colPlayer);
-		circle(localPosition.x, localPosition.y, 20);
+		ellipseMode(CORNER);
+		ellipse(localPosition.x, localPosition.y, PLAYER_SIZE.x, PLAYER_SIZE.y);
 	}
 
 	void drawBullet(){
 		noStroke();
 		fill(colBullet);
-		circle(localPosition.x, localPosition.y, 5);
+		ellipseMode(CORNER);
+		ellipse(localPosition.x, localPosition.y, BULLET_SIZE.x, BULLET_SIZE.y);
 	}
 
 	void drawPixel(){

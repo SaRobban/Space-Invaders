@@ -3,13 +3,10 @@ class Player extends Entity {
 
 	public float speed;
 	private float fireDelay;
+	private Sprite sprite = new Sprite("Player");
 
-	public Player() {
-		this(0, 0, 40, 10);
-	}
-
-	public Player(float x, float y, float size, float speed) {
-		super(x, y, size, size);
+	public Player(float x, float y, float width, float height, float speed) {
+		super(x, y, width, height);
 		this.speed = speed;
 	}
 
@@ -32,15 +29,17 @@ class Player extends Entity {
 
 	@Override
 	public void draw() {
-		// TODO: Replace with player sprite.
-		pushMatrix();
-			translate(position.x, position.y);
-			rect(0, 0, size, size);
-		popMatrix();
+		fill(255);
+		sprite.draw(position);
+	}
+
+	public void getShot() {
+		println("Player got shot");
+		gameOver = true;
 	}
 
 	private void fire() {
-		// TODO: Fire a bullet.
-		println("Fire!");
+		PVector bulletPos = new PVector(position.x + size.x / 2 - BULLET_SIZE.x / 2, position.y);
+		bulletManager.createBullet(bulletPos, direction.copy(), BULLET_SPEED, BULLET_SIZE.copy());
 	}
 }
