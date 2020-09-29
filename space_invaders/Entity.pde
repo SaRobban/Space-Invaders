@@ -6,7 +6,7 @@ class Entity {
 	public PVector size;
 
 	public Entity(float x, float y, float width, float height) {
-		this(x, y, width, height, 0, -1);
+		this(x, y, 0, -1, width, height);
 	}
 
 	public Entity(float x, float y, float directionX, float directionY, float width, float height) {
@@ -20,7 +20,7 @@ class Entity {
 	}
 
 	public Entity(PVector position, PVector direction, PVector size) {
-		this(position.x, position.y, size.x, size.y, direction.x, direction.y);
+		this(position.x, position.y, direction.x, direction.y, size.x, size.y);
 	}
 
 	public void update(float deltaTime) {}

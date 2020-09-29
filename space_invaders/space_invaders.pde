@@ -9,7 +9,7 @@ Shield shield;
 Player player;
 
 // State
-boolean gameOver = true;
+boolean gameOver;
 
 void setup() {
 	size(800, 800);
