@@ -1,9 +1,9 @@
-class BulletManeger{
+class BulletManager{
 	public ArrayList<Bullet> bullets;
 	int idOfBullets = 0;
 
 
-	public BulletManeger(){
+	public BulletManager(){
 		bullets = new ArrayList<Bullet>();
 	}
 
