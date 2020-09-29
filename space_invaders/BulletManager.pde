@@ -49,11 +49,13 @@ class BulletManager{
 			Bullet bullet = bulletsList.get(i);
 			if(shield.colliderTest(bullet.position)){
 				bulletsList.remove(i);
+				continue;
 			}
 
 			if (player.isCollidingWith(bullet)) {
 				bulletsList.remove(i);
 				player.getShot();
+				continue;
 			}
 		}
 	}
