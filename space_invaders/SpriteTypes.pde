@@ -34,7 +34,30 @@ class Sprite{
 		noStroke();
 		fill(colEnemy);
 		ellipseMode(CORNER);
-		ellipse(localPosition.x, localPosition.y, ENEMY_SIZE.x, ENEMY_SIZE.y);
+
+		pushMatrix();
+		translate(localPosition.x, localPosition.y);
+		//Head
+		ellipse(0, 0, ENEMY_SIZE.x, ENEMY_SIZE.y *0.75);	
+		//fill(255);
+		pushMatrix();
+		fill(255,128);
+		translate(ENEMY_SIZE.x * 0.25, ENEMY_SIZE.y * 0.05);
+		rotate(PI*0.3);
+		ellipse(0, 0, ENEMY_SIZE.y *0.15, ENEMY_SIZE.x * 0.35);
+		popMatrix();
+
+		ellipse(ENEMY_SIZE.x * 0.35, ENEMY_SIZE.y * 0.15, ENEMY_SIZE.x * 0.15, ENEMY_SIZE.y *0.1);		
+		strokeWeight(4);
+		stroke(colEnemy);
+		//arms
+		line(ENEMY_SIZE.x *0.5, ENEMY_SIZE.y *0.5, ENEMY_SIZE.x, ENEMY_SIZE.y);
+		line(ENEMY_SIZE.x *0.5, ENEMY_SIZE.y *0.5, ENEMY_SIZE.x *0.5, ENEMY_SIZE.y);
+		line(ENEMY_SIZE.x *0.5, ENEMY_SIZE.y *0.5, 0, ENEMY_SIZE.y);			
+		stroke(0);
+		line(ENEMY_SIZE.x *0.2, ENEMY_SIZE.y *0.4, ENEMY_SIZE.x *0.4, ENEMY_SIZE.y *0.6);
+		line(ENEMY_SIZE.x *0.6, ENEMY_SIZE.y *0.6, ENEMY_SIZE.x *0.8, ENEMY_SIZE.y *0.4);
+		popMatrix();
 	}
 
 	void drawPlayer(){
