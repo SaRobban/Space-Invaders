@@ -27,6 +27,7 @@ class BulletManager{
 
 
 	public void removeThisBullet(Bullet b){
+		vFXManager.createABoom(b.position);
 		bulletsList.remove(b);
 	}
 
@@ -52,7 +53,7 @@ class BulletManager{
 			Bullet bullet = bulletsList.get(i);
 
 			if(shield.colliderTest(bullet.position)){
-				bulletsList.remove(i);
+				removeThisBullet(bulletsList.get(i));// bulletsList.remove(i);
 				i -= 1;
 			}
 			else if (player.isCollidingWith(bullet)) {
