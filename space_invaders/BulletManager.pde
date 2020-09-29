@@ -35,6 +35,8 @@ class BulletManager{
 		for (int i = 0; i < bulletsList.size(); i++){
 			bulletsList.get(i).update(deltaTime);
 		}
+		//TODO: Loop twice is unnessesery
+		checkCollision();
 	}
 
 
@@ -46,6 +48,7 @@ class BulletManager{
 
 	public void checkCollision(){
 		for(int i = 0; i < bulletsList.size(); i++){
+			
 			Bullet bullet = bulletsList.get(i);
 			if(shield.colliderTest(bullet.position)){
 				bulletsList.remove(i);

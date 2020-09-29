@@ -42,11 +42,16 @@ class Shield extends Entity{
 
 
 	private boolean checkCollision(PVector otherPos){
+		int otherX = (int)otherPos.x;
+		int otherY = (int)otherPos.y;
+
 		boolean collided = false;
 		for(int x = 0; x < length -1; x++){
 			for(int y = 0; y < length -1; y++){
 				if(pixs[x][y].active){
-					if(otherPos.x == pixs[x][y].position.x && otherPos.y == pixs[x][y].position.y){
+					print("pther pos = " + otherPos + "  blockPos = " + pixs[x][y].position +"\n");
+					if(otherX == pixs[x][y].position.x && otherY == pixs[x][y].position.y){
+						print("coltest");
 						makeHole(otherPos);
 						collided = true;
 					}

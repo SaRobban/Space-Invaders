@@ -19,10 +19,12 @@ class Bullet extends Entity{
 		position.set(posX, posY);
 	}
 
+
 	@Override
 	public void update(float deltaTime){
 		position.add(PVector.mult(direction, speed * deltaTime));
 	}
+
 
 	@Override
 	public void draw(){
