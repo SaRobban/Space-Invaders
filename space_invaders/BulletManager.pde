@@ -26,8 +26,13 @@ class BulletManager{
 	}
 
 
-	public void removeThisBullet(Bullet b){
-		bulletsList.remove(b);
+	public void removeThisBullet(Bullet b) {
+		removeThisBullet(bulletsList.indexOf(b));
+	}
+
+	public void removeThisBullet(int bulletIndex) {
+		vFXManager.createABoom(bulletsList.get(bulletIndex).position);
+		bulletsList.remove(bulletIndex);
 	}
 
 
@@ -53,7 +58,7 @@ class BulletManager{
 
 			// Player collision.
 			if (bullet.faction != Faction.PLAYER && player.isCollidingWith(bullet)) {
-				bulletsList.remove(i);
+				removeThisBullet(i);
 				player.getShot();
 				i--;
 				continue;
@@ -64,7 +69,7 @@ class BulletManager{
 				for (int j = 0; j < enemyManager.enemyList.size(); j++) {
 					Enemy enemy = enemyManager.enemyList.get(j);
 					if (enemy.isCollidingWith(bullet)) {
-						bulletsList.remove(i);
+						removeThisBullet(i);
 						enemyManager.enemyList.remove(j);
 						enemy.getShot();
 						i--;
@@ -76,7 +81,7 @@ class BulletManager{
 
 			// Shield collision.
 			if (shield.colliderTest(bullet.position)) {
-				bulletsList.remove(i);
+				removeThisBullet(i);
 				i--;
 				continue;
 			}
