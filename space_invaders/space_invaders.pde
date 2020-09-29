@@ -5,6 +5,7 @@ final PVector PLAYER_SIZE = new PVector(20, 20);
 Clock clock = new Clock();
 Input input = new Input();
 BulletManager bulletManager = new BulletManager();
+EnemyManager enemyManager = new EnemyManager();
 Shield shield;
 Player player;
 

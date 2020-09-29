@@ -47,15 +47,25 @@ class BulletManager{
 	public void checkCollision(){
 		for(int i = 0; i < bulletsList.size(); i++){
 			Bullet bullet = bulletsList.get(i);
+
 			if(shield.colliderTest(bullet.position)){
 				bulletsList.remove(i);
-				continue;
+				i -= 1;
 			}
-
-			if (player.isCollidingWith(bullet)) {
+			else if (player.isCollidingWith(bullet)) {
 				bulletsList.remove(i);
 				player.getShot();
-				continue;
+			}
+			else {
+				for (int j = 0; j < enemyManager.enemyList.size(); j++) {
+					Enemy enemy = enemyManager.enemyList.get(j);
+					if (enemy.isCollidingWith(bullet)) {
+						bulletsList.remove(i);
+						enemyManager.enemyList.remove(j);
+						i -= 1;
+						j -= 1;
+					}
+				}
 			}
 		}
 	}
