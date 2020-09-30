@@ -5,7 +5,8 @@ final PVector BULLET_SIZE = new PVector(5, 5);
 // Player
 final PVector PLAYER_SIZE = new PVector(30, 30);
 final int PLAYER_HEALTH = 3;
-final float PLAYER_FIRE_DELAY = 0.5f;
+final float PLAYER_FIRE_DELAY = 0.25f;
+final float PLAYER_AUTO_FIRE_DELAY = 0.5f;
 
 // Enemies
 final PVector ENEMY_SPEED = new PVector(50, 5);

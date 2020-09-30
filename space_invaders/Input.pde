@@ -1,9 +1,9 @@
 class Input {
 	public boolean left, right;
-	public boolean fire;
+	public boolean fire, fireDown;
+	public boolean anyKey, anyKeyDown;
 
-	public boolean anyKey;
-	public boolean anyKeyDown;
+	private boolean oldFire;
 
 	public void keyPressed() {
 		onKey(true);
@@ -25,6 +25,9 @@ class Input {
 		else {
 			anyKey = false;
 		}
+
+		fireDown = !oldFire && fire;
+		if (fireDown) oldFire = fire;
 	}
 
 	private void onKey(boolean pressed) {
@@ -35,6 +38,7 @@ class Input {
 			right = pressed;
 		}
 		else if (keyCode == UP || key == 'w' || key == ' ') {
+			oldFire = fire;
 			fire = pressed;
 		}
 	}
