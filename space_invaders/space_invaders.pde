@@ -24,13 +24,16 @@ void setup() {
 	player = new Player(400, 740, PLAYER_SIZE.x, PLAYER_SIZE.y, 240);
 	shield = new Shield(new PVector(500, 500), 50);
 
-	startGame();
+	gameState = State.MENU;
 }
 
 void update() {
 	float deltaTime = clock.tick();
 
-	if (gameState == State.PLAYING || gameState == State.GAME_OVER) {
+	if(gameState == State.MENU){
+
+
+	}else if (gameState == State.PLAYING || gameState == State.GAME_OVER) {
 		player.update(deltaTime);
 		enemyManager.update(deltaTime);
 		bulletManager.update(deltaTime);
@@ -42,16 +45,24 @@ void draw() {
 	update();
 
 	background(0);
-	if (gameState == State.PLAYING || gameState == State.GAME_OVER) {
+
+	if(gameState == State.MENU){
+		ui.drawTitle();
+	}else if (gameState == State.PLAYING || gameState == State.GAME_OVER) {
 		bulletManager.draw();
 		shield.draw();
 		enemyManager.draw();
 		player.draw();
-		vFXManager.draw();
+		vFXManager.draw();	
 	}
 
-	ui.drawUI();
-	ui.drawHUD();
+	if(gameState == State.GAME_OVER){
+		ui.drawGameOver();
+	}
+
+	if(gameState == State.PLAYING){
+		ui.drawHUD();
+	}
 }
 
 void keyPressed() { input.keyPressed(); }
@@ -73,6 +84,7 @@ void reset() {
 	vFXManager.reset();
 	player.reset();
 	player.position.set((width - player.size.x) / 2, 740);
+	ui.reset();
 }
 
 void gameOver() {
