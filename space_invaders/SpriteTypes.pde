@@ -4,10 +4,12 @@ class Sprite{
 	String enemy = 	new String("Enemy");
 	String player = new String("Player");
 	String bullet = new String("Bullet");
+	String ufo = new String("UFO");
 
 	color colEnemy =  color(255, 0, 0, 255);
 	color colPlayer = color(0, 255, 0, 255);
 	color colBullet = color(0, 0, 255, 255);
+	color colUFO = color(0, 0, 255, 255);
 
 	Sprite(String type){
 		this.type = type;
@@ -25,6 +27,8 @@ class Sprite{
 			drawBullet();
 		}else if(type.equals(player)){
 			drawPlayer();
+		}else if(type.equals(ufo)){
+			drawUFO();
 		}else{
 			drawPixel();
 		}
@@ -72,6 +76,14 @@ class Sprite{
 		fill(colBullet);
 		ellipseMode(CORNER);
 		ellipse(localPosition.x, localPosition.y, BULLET_SIZE.x, BULLET_SIZE.y);
+	}
+
+	void drawUFO(){
+		noStroke();
+		fill(colPlayer);
+		ellipseMode(CORNER);
+		ellipse(localPosition.x, localPosition.y + PLAYER_SIZE.y * 0.25, PLAYER_SIZE.x, PLAYER_SIZE.y * 0.5);
+		ellipse(localPosition.x + PLAYER_SIZE.x * 0.25, localPosition.y, PLAYER_SIZE.y  * 0.5, PLAYER_SIZE.y);
 	}
 
 	void drawPixel(){

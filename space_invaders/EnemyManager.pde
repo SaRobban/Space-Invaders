@@ -2,6 +2,9 @@ class EnemyManager{
 	public ArrayList<Enemy> enemyList;
 	public ArrayList<EnemyGroup> groups;
 
+	int ufoIntervall = 10;
+	int killsSinceLastUFO = 0;
+
 	public EnemyManager(){
 		enemyList = new ArrayList<Enemy>();
 		groups = new ArrayList<EnemyGroup>();
@@ -44,6 +47,10 @@ class EnemyManager{
 		enemyList.add(new MovingEnemy(new PVector(posX, posY), new PVector(dirX, dirY), new PVector(sizeX, sizeY), speed));
 	}
 
+	public void addEnemyToList(Enemy e) {
+		enemyList.add(e);
+	}
+
 
 	public void removeEnemyFromList(Enemy e){
 		enemyList.remove(e);
@@ -51,11 +58,22 @@ class EnemyManager{
 
 
 	public void onEnemyDead(Enemy enemy) {
+		score += enemy.value;
+		killCount++;
+		killsSinceLastUFO++;
 		removeEnemyFromList(enemy);
 	}
 
 
 	public void update(float deltaTime){
+		//Spawn UFO ?
+		if(ufoIntervall == killsSinceLastUFO){
+			print("Spawn UFO");
+			addEnemyToList(new UFO(new PVector(width, 50), new PVector(-1,0), new PVector(1,0), 300));
+			killsSinceLastUFO = 0;
+		}
+
+
 		for (int i = 0; i < groups.size(); i++) {
 			EnemyGroup group = groups.get(i);
 			group.update(deltaTime);

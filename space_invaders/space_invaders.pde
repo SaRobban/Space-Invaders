@@ -14,6 +14,7 @@ Player player;
 State gameState;
 int score;
 int highScore;
+int killCount;
 
 void setup() {
 	size(600, 800);
@@ -50,7 +51,6 @@ void update() {
 
 void draw() {
 	update();
-
 	background(0);
 
 	if(gameState == State.MENU){
@@ -92,6 +92,8 @@ void reset() {
 	ui.reset();
 
 	shield = new Shield(new PVector(500, 500), 50);
+	score = 0;
+	killCount = 0;
 }
 
 void gameOver() {
