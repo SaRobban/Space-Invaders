@@ -36,6 +36,11 @@ class BulletManager{
 	}
 
 
+	public void clearBullets() {
+		bulletsList.clear();
+	}
+
+
 	public void update(float deltaTime){
 		for (int i = 0; i < bulletsList.size(); i++){
 			bulletsList.get(i).update(deltaTime);
@@ -57,7 +62,7 @@ class BulletManager{
 			Bullet bullet = bulletsList.get(i);
 
 			// Player collision.
-			if (bullet.faction != Faction.PLAYER && player.isCollidingWith(bullet)) {
+			if (bullet.faction != Faction.PLAYER && !player.dead && player.isCollidingWith(bullet)) {
 				removeThisBullet(i);
 				player.getShot();
 				i--;

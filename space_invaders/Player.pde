@@ -1,6 +1,7 @@
 class Player extends Entity {
 	public float speed;
 	public int health = PLAYER_HEALTH;
+	public boolean dead = false;
 
 	private float fireDelay;
 	private Sprite sprite = new Sprite("Player");
@@ -12,6 +13,8 @@ class Player extends Entity {
 
 	@Override
 	public void update(float dt) {
+		if (dead) return;
+
 		// Movement
 		float move = 0;
 		if (input.left) move -= 1;
@@ -30,18 +33,24 @@ class Player extends Entity {
 
 	@Override
 	public void draw() {
+		if (dead) return;
+
 		fill(255);
 		sprite.draw(position);
 	}
 
 	public void getShot() {
-		println("Player got shot");
-		if (health <= 0) return;
+		if (dead || health <= 0) return;
 
 		health -= 1;
 		if (health == 0) {
-			gameOver();
+			die();
 		}
+	}
+
+	private void die() {
+		dead = true;
+		gameOver();
 	}
 
 	private void fire() {

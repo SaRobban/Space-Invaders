@@ -13,4 +13,4 @@ final PVector ENEMY_SIZE = new PVector(30, 30);
 final float ENEMY_SHOOT_DELAY = 1.2f;
 final int ENEMY_VALUE = 100;
 final float ENEMY_FORMATION_SPACING = 30;
-final float ENEMY_FORMATION_WALL_PADDING = 60;
+final float ENEMY_FORMATION_WALL_PADDING = 30;

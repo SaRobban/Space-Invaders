@@ -19,9 +19,9 @@ void setup() {
 	player = new Player(400, 740, PLAYER_SIZE.x, PLAYER_SIZE.y, 240);
 	shield = new Shield(new PVector(500, 500), 50);
 
-	enemyManager.createEnemyGroup(100, ENEMY_SIZE, ENEMY_SPEED, 8, 4);
+	enemyManager.createEnemyGroup(100, ENEMY_SIZE, ENEMY_SPEED, 7, 4);
 
-	ui = new UserInterface(); 
+	ui = new UserInterface();
 }
 
 void update() {
@@ -46,19 +46,16 @@ void draw() {
 	ui.drawHUD();
 }
 
-void keyPressed() {
-	input.keyPressed();
-}
+void keyPressed() { input.keyPressed(); }
+void keyReleased() { input.keyReleased(); }
 
-void keyReleased() {
-	input.keyReleased();
-}
 
 void gameOver() {
 	if (gameOver) return;
 
 	println("Game over!");
 	gameOver = true;
+
 	if (score > highScore) {
 		highScore = score;
 		saveHighScore();
