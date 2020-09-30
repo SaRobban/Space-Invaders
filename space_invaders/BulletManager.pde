@@ -43,7 +43,18 @@ class BulletManager{
 
 	public void update(float deltaTime){
 		for (int i = 0; i < bulletsList.size(); i++){
-			bulletsList.get(i).update(deltaTime);
+			Bullet bullet = bulletsList.get(i);
+			bullet.update(deltaTime);
+
+			// Remove offscreen bullets.
+			if (bullet.position.x + bullet.size.x < 0 ||
+				bullet.position.y + bullet.size.y < 0 ||
+				bullet.position.x >= width ||
+				bullet.position.y >= height) {
+
+				bulletsList.remove(i);
+				i--;
+			}
 		}
 		//TODO: Loop twice is unnessesery
 		checkCollision();
