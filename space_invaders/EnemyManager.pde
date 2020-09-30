@@ -77,8 +77,9 @@ class EnemyManager{
 			}
 		}
 
+		// Next wave when all enemies are cleared.
 		if (enemyList.size() <= 0) {
-			gameOver();
+			waveManager.nextWave();
 		}
 	}
 

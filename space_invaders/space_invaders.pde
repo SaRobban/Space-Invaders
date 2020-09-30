@@ -4,6 +4,7 @@ Clock clock = new Clock();
 Input input = new Input();
 BulletManager bulletManager = new BulletManager();
 EnemyManager enemyManager = new EnemyManager();
+WaveManager waveManager = new WaveManager();
 VFXManager vFXManager = new VFXManager();
 UserInterface ui;
 Shield shield;
@@ -77,15 +78,14 @@ void keyReleased() { input.keyReleased(); }
 
 void startGame() {
 	reset();
-
-	enemyManager.createEnemyGroup(100, ENEMY_SIZE, ENEMY_SPEED, 7, 4);
-
+	waveManager.nextWave();
 	gameState = State.PLAYING;
 }
 
 void reset() {
 	bulletManager.reset();
 	enemyManager.reset();
+	waveManager.reset();
 	vFXManager.reset();
 	player.reset();
 	player.position.set((width - player.size.x) / 2, 740);
