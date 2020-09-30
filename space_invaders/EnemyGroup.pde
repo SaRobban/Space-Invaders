@@ -73,25 +73,33 @@ class EnemyGroup {
 	private void recalculateBounds() {
 		if (enemyCount <= 0) return;
 
-		PVector min = new PVector(1/0f, 1/0f);
-		PVector max = new PVector(-1/0f, -1/0f);
+		final float INF = 1/0f;
+
+		float top = INF;
+		float left = INF;
+		float right = -INF;
+		float bottom = -INF;
 
 		for (int y = 0; y < numY; y++)
 		for (int x = 0; x < numX; x++) {
 			Enemy enemy = enemies[x][y];
 			if (enemy == null) continue;
 
-			if (enemy.position.x <= min.x && enemy.position.y <= min.y)
-				min.set(enemy.position);
+			if (enemy.position.x < left)
+				left = enemy.position.x;
 
-			if (enemy.position.x >= max.x && enemy.position.y >= max.y)
-				max.set(enemy.position);
+			if (enemy.position.y < top)
+				top = enemy.position.y;
+
+			if (enemy.position.x + enemy.size.x > right)
+				right = enemy.position.x + enemy.size.x;
+
+			if (enemy.position.y + enemy.size.y > bottom)
+				bottom = enemy.position.y + enemy.size.y;
 		}
 
-		max.add(ENEMY_SIZE, ENEMY_SIZE);
-
-		position.set(min);
-		size.set(max.x - min.x, max.y - min.y);
+		position.set(left, top);
+		size.set(right - left, bottom - top);
 	}
 
 	private void shoot() {
