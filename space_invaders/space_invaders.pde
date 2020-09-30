@@ -20,7 +20,6 @@ void setup() {
 	loadHighScore();
 	ui = new UserInterface();
 	player = new Player(400, 740, PLAYER_SIZE.x, PLAYER_SIZE.y, 240);
-	shield = new Shield(new PVector(500, 500), 50);
 
 	gameState = State.MENU;
 }
@@ -93,6 +92,8 @@ void reset() {
 	player.reset();
 	player.position.set((width - player.size.x) / 2, 740);
 	ui.reset();
+
+	shield = new Shield(new PVector(500, 500), 50);
 }
 
 void gameOver() {
