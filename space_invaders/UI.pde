@@ -13,7 +13,7 @@ class UserInterface{
 
 	UserInterface(){
 		fontLarge = loadFont("LargeText-24.vlw");
-		fontSmall = loadFont("SmallText-12.vlw");
+		fontSmall = loadFont("SmallText-18.vlw");
 		fontTitle = loadFont("Title-72.vlw");
 	}
 
@@ -37,34 +37,30 @@ class UserInterface{
 		color animHiS = lerpColor(colTextHiScore, color (255,255,255,255), animV * 0.5);
 		fill(animHiS);
 		text("PRESS ANY KEY", width * 0.5, height * 0.6 + 20);
-		textFont(fontSmall, 12);
+		textFont(fontSmall, 18);
 		text("Coins : 3", width * 0.5, height * 0.6);
 	}
 
 	void drawHUD(){
+		newHiScore = false;
+		fill(colTextScore);
+		textFont(fontSmall, 18);
+		textAlign(LEFT, TOP);
+		text("Score : " + score + "\n" + "Wave : " + waveManager.wave, 10, 50);
+		textFont(fontLarge, 24);
+		textAlign(CENTER, TOP);
+
 		if(score < highScore){
-			newHiScore = false;
-			fill(colTextScore);
-			textFont(fontSmall, 12);
-			textAlign(LEFT, TOP);
-			text("Score : " + score + "\n" + "Wave : " + waveManager.wave, 10, 10 );
-			textFont(fontLarge, 24);
-			textAlign(CENTER, TOP);
-			text("HiScore : " + highScore, width * 0.5, 30);
+			text("---+HiScore : " + highScore + " +---", width * 0.5, 20);
 		}else{
 			newHiScore = true;
-			fill(colTextScore);
-			textFont(fontSmall, 12);
-			textAlign(LEFT, TOP);
-			text("OldHiScore : " + highScore, 10, 10);
-
 			float animV = sin(millis() * 0.01) +1;
 			color animHiS = lerpColor(colTextHiScore, color (255,255,255,255), animV * 0.5);
-
 			fill(animHiS);
 			textFont(fontLarge, 24);
-			textAlign(CENTER, TOP);
-			text("NewHiScore : " + score, width * 0.5, 30);
+			
+			
+			text("---+NewHiScore : " + score + " +---", width * 0.5, 20);
 		}
 	}
 
@@ -80,7 +76,7 @@ class UserInterface{
 		textAlign(CENTER, CENTER);
 		textFont(fontLarge, 24);
 		text("Game Over", width / 2, height / 2);
-		textFont(fontSmall, 12);
+		textFont(fontSmall, 18);
 
 		if(newHiScore){
 			text("Your new HiScore", width * 0.5, height * 0.6);
