@@ -14,7 +14,7 @@ class Player extends Entity {
 
 	@Override
 	public void update(float dt) {
-		if (dead) return;
+		if (dead || gameState == State.GAME_OVER) return;
 
 		// Movement
 		float move = 0;
