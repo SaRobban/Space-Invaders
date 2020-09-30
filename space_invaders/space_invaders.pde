@@ -66,7 +66,6 @@ void loadHighScore() {
 
 	JSONObject json = loadJSONObject("save.json");
 	highScore = json.getInt("highScore");
-	println("loaded hs: " + highScore);
 }
 
 void saveHighScore() {
