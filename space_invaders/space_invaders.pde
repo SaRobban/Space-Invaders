@@ -18,9 +18,7 @@ int highScore;
 void setup() {
 	size(600, 800);
 	loadHighScore();
-
 	ui = new UserInterface();
-
 	player = new Player(400, 740, PLAYER_SIZE.x, PLAYER_SIZE.y, 240);
 	shield = new Shield(new PVector(500, 500), 50);
 
@@ -31,13 +29,22 @@ void update() {
 	float deltaTime = clock.tick();
 
 	if(gameState == State.MENU){
-
+		if(input.fire){
+			startGame();
+		}
 
 	}else if (gameState == State.PLAYING || gameState == State.GAME_OVER) {
 		player.update(deltaTime);
 		enemyManager.update(deltaTime);
 		bulletManager.update(deltaTime);
 		vFXManager.update(deltaTime);
+	}
+
+	if(gameState == State.GAME_OVER){
+		if(input.fire){
+			gameState = State.MENU;
+			input.fire = false;
+		}
 	}
 }
 

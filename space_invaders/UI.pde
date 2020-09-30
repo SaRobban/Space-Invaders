@@ -31,8 +31,7 @@ class UserInterface{
 		line(150, height * 0.5, 190, height * 0.5);
 		line(220, height * 0.5, width, height * 0.5);
 
-		
-
+		//Sub text
 		textFont(fontLarge, 24);
 		float animV = sin(millis() * 0.01) +1;
 		color animHiS = lerpColor(colTextHiScore, color (255,255,255,255), animV * 0.5);
