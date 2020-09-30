@@ -9,6 +9,7 @@ class Player extends Entity {
 	public Player(float x, float y, float width, float height, float speed) {
 		super(x, y, width, height);
 		this.speed = speed;
+		fireDelay = PLAYER_FIRE_DELAY;
 	}
 
 	@Override
@@ -50,7 +51,7 @@ class Player extends Entity {
 
 	public void reset() {
 		health = PLAYER_HEALTH;
-		fireDelay = 0;
+		fireDelay = PLAYER_FIRE_DELAY;
 		dead = false;
 	}
 
