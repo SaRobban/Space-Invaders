@@ -10,6 +10,8 @@ UserInterface ui;
 Shield shield;
 Player player;
 
+PShader vhsShader;
+
 // State
 State gameState;
 int score;
@@ -17,7 +19,11 @@ int highScore;
 int killCount;
 
 void setup() {
-	size(600, 800);
+	size(600, 800, P2D);
+
+	vhsShader = loadShader("vhs.glsl");
+	vhsShader.set("iResolution", width, height, 1.0f);
+
 	loadHighScore();
 	ui = new UserInterface();
 	player = new Player(400, 740, PLAYER_SIZE.x, PLAYER_SIZE.y, 240);
@@ -70,6 +76,10 @@ void draw() {
 	if(gameState == State.PLAYING){
 		ui.drawHUD();
 	}
+
+	// Apply VHS filter.
+	vhsShader.set("iTime", clock.time());
+	filter(vhsShader);
 }
 
 void keyPressed() { input.keyPressed(); }
