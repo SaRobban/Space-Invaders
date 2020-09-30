@@ -69,6 +69,8 @@ class EnemyGroup {
 	}
 
 	private void shoot() {
+		if (enemyCount <= 0) return;
+
 		// TODO: Bad random loop, make better.
 		random_loop:
 		while (true) {
