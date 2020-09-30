@@ -48,6 +48,12 @@ class Player extends Entity {
 		}
 	}
 
+	public void reset() {
+		health = PLAYER_HEALTH;
+		fireDelay = 0;
+		dead = false;
+	}
+
 	private void die() {
 		dead = true;
 		gameOver();

@@ -92,4 +92,8 @@ class BulletManager{
 			}
 		}
 	}
+
+	public void reset() {
+		bulletsList.clear();
+	}
 }

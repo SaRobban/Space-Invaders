@@ -79,4 +79,9 @@ class EnemyManager{
 			enemyList.get(i).draw();
 		}
 	}
+
+	public void reset() {
+		groups.clear();
+		enemyList.clear();
+	}
 }

@@ -1,14 +1,17 @@
+enum State { MENU, PLAYING, GAME_OVER }
+
 Clock clock = new Clock();
 Input input = new Input();
 BulletManager bulletManager = new BulletManager();
 EnemyManager enemyManager = new EnemyManager();
 VFXManager vFXManager = new VFXManager();
+UserInterface ui;
 Shield shield;
 Player player;
 
-UserInterface ui;
 // State
-boolean gameOver;
+State gameState;
+boolean gameOver; // TODO: Remove this.
 int score;
 int highScore;
 
@@ -16,32 +19,37 @@ void setup() {
 	size(600, 800);
 	loadHighScore();
 
+	ui = new UserInterface();
+
 	player = new Player(400, 740, PLAYER_SIZE.x, PLAYER_SIZE.y, 240);
 	shield = new Shield(new PVector(500, 500), 50);
 
-	enemyManager.createEnemyGroup(100, ENEMY_SIZE, ENEMY_SPEED, 7, 4);
-
-	ui = new UserInterface();
+	startGame();
 }
 
 void update() {
 	float deltaTime = clock.tick();
 
-	player.update(deltaTime);
-	enemyManager.update(deltaTime);
-	bulletManager.update(deltaTime);
-	vFXManager.update(deltaTime);
+	if (gameState == State.PLAYING || gameState == State.GAME_OVER) {
+		player.update(deltaTime);
+		enemyManager.update(deltaTime);
+		bulletManager.update(deltaTime);
+		vFXManager.update(deltaTime);
+	}
 }
 
 void draw() {
 	update();
 
 	background(0);
-	bulletManager.draw();
-	shield.draw();
-	enemyManager.draw();
-	player.draw();
-	vFXManager.draw();
+	if (gameState == State.PLAYING || gameState == State.GAME_OVER) {
+		bulletManager.draw();
+		shield.draw();
+		enemyManager.draw();
+		player.draw();
+		vFXManager.draw();
+	}
+
 	ui.drawUI();
 	ui.drawHUD();
 }
@@ -50,11 +58,29 @@ void keyPressed() { input.keyPressed(); }
 void keyReleased() { input.keyReleased(); }
 
 
+void startGame() {
+	reset();
+
+	enemyManager.createEnemyGroup(100, ENEMY_SIZE, ENEMY_SPEED, 7, 4);
+}
+
+void reset() {
+	bulletManager.reset();
+	enemyManager.reset();
+	vFXManager.reset();
+	player.reset();
+	player.position.set((width - player.size.x) / 2, 740);
+
+	gameOver = false;
+	gameState = State.PLAYING;
+}
+
 void gameOver() {
 	if (gameOver) return;
 
 	println("Game over!");
 	gameOver = true;
+	gameState = State.GAME_OVER;
 
 	if (score > highScore) {
 		highScore = score;

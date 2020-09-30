@@ -27,5 +27,9 @@ class VFXManager{
 		for(int i = 0; i < vfxList.size(); i++){
 			vfxList.get(i).draw();
 		}
-	}	
+	}
+
+	public void reset() {
+		vfxList.clear();
+	}
 }
