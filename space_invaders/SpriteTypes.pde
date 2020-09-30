@@ -8,8 +8,8 @@ class Sprite{
 	String bullet = new String("Bullet");
 	String ufo = new String("UFO");
 
-	color colEnemy =  			color(200, 32, 0, 255);
-	color colPlayer = 			color(0, 200, 100, 255);
+	color colEnemy =  			color(255, 0, 0, 255);
+	color colPlayer = 			color(0, 255, 0, 255);
 	color colBullet = 			color(255, 255, 255, 255);
 	color colBulletOutline = 	color(0, 0, 255, 255);
 	color colUFO = 				color(0, 0, 255, 255);
