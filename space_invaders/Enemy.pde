@@ -14,7 +14,7 @@ class Enemy extends Entity{
 	}
 
 	public void getShot() {
-		if (!gameOver)
+		if (gameState != State.GAME_OVER)
 			die();
 	}
 

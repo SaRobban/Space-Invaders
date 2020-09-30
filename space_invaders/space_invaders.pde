@@ -11,7 +11,6 @@ Player player;
 
 // State
 State gameState;
-boolean gameOver; // TODO: Remove this.
 int score;
 int highScore;
 
@@ -81,7 +80,6 @@ void startGame() {
 
 	enemyManager.createEnemyGroup(100, ENEMY_SIZE, ENEMY_SPEED, 7, 4);
 
-	gameOver = false;
 	gameState = State.PLAYING;
 }
 
@@ -97,10 +95,9 @@ void reset() {
 }
 
 void gameOver() {
-	if (gameOver) return;
+	if (gameState == State.GAME_OVER) return;
 
 	println("Game over!");
-	gameOver = true;
 	gameState = State.GAME_OVER;
 
 	if (score > highScore) {
