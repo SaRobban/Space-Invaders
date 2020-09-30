@@ -7,6 +7,7 @@ class Bullet extends Entity{
 		super(position, direction, size);
 		this.speed = speed;
 		bulletSprite = new Sprite("Bullet");
+		this.faction = faction;
 	}
 
 
@@ -28,6 +29,11 @@ class Bullet extends Entity{
 
 	@Override
 	public void draw(){
-		bulletSprite.draw(position);
+		//bulletSprite.draw(position);
+		if(faction == faction.ENEMY){
+			bulletSprite.drawEnemyBullet(position);
+		}else{
+			bulletSprite.draw(position);
+		}
 	}
 }
