@@ -71,6 +71,10 @@ class EnemyManager{
 				gameOver();
 			}
 		}
+
+		if (enemyList.size() <= 0) {
+			gameOver();
+		}
 	}
 
 
