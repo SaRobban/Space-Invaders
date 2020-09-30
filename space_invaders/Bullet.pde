@@ -31,9 +31,9 @@ class Bullet extends Entity{
 	public void draw(){
 		//bulletSprite.draw(position);
 		if(faction == faction.ENEMY){
-			bulletSprite.drawEnemyBullet(position);
+			bulletSprite.drawEnemyBullet(position, size);
 		}else{
-			bulletSprite.draw(position);
+			bulletSprite.draw(position, size);
 		}
 	}
 }

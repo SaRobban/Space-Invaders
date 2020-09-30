@@ -47,7 +47,7 @@ class Player extends Entity {
 		if (dead) return;
 
 		fill(255);
-		sprite.draw(position);
+		sprite.draw(position, size);
 	}
 
 	public void getShot() {

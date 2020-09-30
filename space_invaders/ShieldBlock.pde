@@ -122,7 +122,7 @@ class DestructiblePixel{
 
 	public void draw(){
 		if(active)
-			sprite.draw(position);
+			sprite.draw(position, new PVector(1,1));
 	}
 
 }

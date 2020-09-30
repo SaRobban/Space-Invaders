@@ -10,7 +10,7 @@ class Enemy extends Entity{
 
 	@Override
 	public void draw(){
-		sprite.draw(position);
+		sprite.draw(position, size);
 	}
 
 	public void getShot() {

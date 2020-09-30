@@ -19,7 +19,7 @@ class Sprite{
 		this.localPosition = new PVector(0,0);
 	}
 
-
+/*
 	void draw(PVector pos){
 
 		localPosition = pos;
@@ -37,7 +37,7 @@ class Sprite{
 			drawPixel();
 		}
 	}
-
+*/
 	void draw(PVector pos, PVector size){
 
 		localPosition = pos;
@@ -64,25 +64,25 @@ class Sprite{
 		pushMatrix();
 		translate(localPosition.x, localPosition.y);
 		//Head
-		ellipse(0, 0, ENEMY_SIZE.x, ENEMY_SIZE.y *0.75);	
+		ellipse(0, 0, localSize.x, localSize.y *0.75);	
 		//fill(255);
 		pushMatrix();
 		fill(255,128);
-		translate(ENEMY_SIZE.x * 0.25, ENEMY_SIZE.y * 0.05);
+		translate(localSize.x * 0.25, localSize.y * 0.05);
 		rotate(PI*0.3);
-		ellipse(0, 0, ENEMY_SIZE.y *0.15, ENEMY_SIZE.x * 0.35);
+		ellipse(0, 0, localSize.y *0.15, localSize.x * 0.35);
 		popMatrix();
 
-		ellipse(ENEMY_SIZE.x * 0.35, ENEMY_SIZE.y * 0.15, ENEMY_SIZE.x * 0.15, ENEMY_SIZE.y *0.1);		
+		ellipse(localSize.x * 0.35, localSize.y * 0.15, localSize.x * 0.15, localSize.y *0.1);		
 		strokeWeight(4);
 		stroke(colEnemy);
 		//arms
-		line(ENEMY_SIZE.x *0.5, ENEMY_SIZE.y *0.5, ENEMY_SIZE.x, ENEMY_SIZE.y);
-		line(ENEMY_SIZE.x *0.5, ENEMY_SIZE.y *0.5, ENEMY_SIZE.x *0.5, ENEMY_SIZE.y);
-		line(ENEMY_SIZE.x *0.5, ENEMY_SIZE.y *0.5, 0, ENEMY_SIZE.y);			
+		line(localSize.x *0.5, localSize.y *0.5, localSize.x, localSize.y);
+		line(localSize.x *0.5, localSize.y *0.5, localSize.x *0.5, localSize.y);
+		line(localSize.x *0.5, localSize.y *0.5, 0, localSize.y);			
 		stroke(0);
-		line(ENEMY_SIZE.x *0.2, ENEMY_SIZE.y *0.4, ENEMY_SIZE.x *0.4, ENEMY_SIZE.y *0.6);
-		line(ENEMY_SIZE.x *0.6, ENEMY_SIZE.y *0.6, ENEMY_SIZE.x *0.8, ENEMY_SIZE.y *0.4);
+		line(localSize.x *0.2, localSize.y *0.4, localSize.x *0.4, localSize.y *0.6);
+		line(localSize.x *0.6, localSize.y *0.6, localSize.x *0.8, localSize.y *0.4);
 		popMatrix();
 	}
 
@@ -90,34 +90,40 @@ class Sprite{
 		noStroke();
 		fill(colPlayer);
 		ellipseMode(CORNER);
-		ellipse(localPosition.x, localPosition.y, PLAYER_SIZE.x, PLAYER_SIZE.y);
+		ellipse(localPosition.x, localPosition.y, localSize.x, localSize.y);
 	}
 
 	void drawBullet(){
 		noStroke();
 		fill(colBullet);		
 		ellipseMode(CORNER);
-		ellipse(localPosition.x, localPosition.y, BULLET_SIZE.x, BULLET_SIZE.y);
+		ellipse(localPosition.x, localPosition.y, localSize.x, localSize.y);
 	}
 
-	void drawEnemyBullet(PVector pos){
+	void drawEnemyBullet(PVector pos, PVector size){
 		localPosition = pos;
+		localSize = size;
+
+		float toTheLeft = sin(localPosition.y);
+		float toTheRight = toTheLeft *-1;
+
 		pushMatrix();
 		translate(localPosition.x, localPosition.y);
 		strokeWeight(4);
 		stroke(color(255,0,0,128));
 
-		line(0					, 0					,BULLET_SIZE.x * 0.5	, BULLET_SIZE.y * 0.5);
-		line(BULLET_SIZE.x * 0.5, BULLET_SIZE.y *0.5,-BULLET_SIZE.x * 0.5	, BULLET_SIZE.y);
-		line(-BULLET_SIZE.x * 0.5,BULLET_SIZE.y 	,BULLET_SIZE.x * 0.5	, BULLET_SIZE.y * 1.5);
-		line(BULLET_SIZE.x * 0.5 ,BULLET_SIZE.y *1.5,0						, BULLET_SIZE.y * 2);
+		line(0					, 0					,toTheLeft	, localSize.y * 0.5);
+		line(toTheLeft			, localSize.y *0.5	,-toTheLeft	, localSize.y);
+		line(-toTheLeft			,localSize.y 		,toTheLeft	, localSize.y * 1.5);
+		line(toTheLeft			,localSize.y *1.5	,0			, localSize.y * 2);
 
 		strokeWeight(2);
 		stroke(color(255,255,200,255));
-		line(0					, 0					,BULLET_SIZE.x * 0.5	, BULLET_SIZE.y * 0.5);
-		line(BULLET_SIZE.x * 0.5, BULLET_SIZE.y *0.5,-BULLET_SIZE.x * 0.5	, BULLET_SIZE.y);
-		line(-BULLET_SIZE.x * 0.5,BULLET_SIZE.y 	,BULLET_SIZE.x * 0.5	, BULLET_SIZE.y * 1.5);
-		line(BULLET_SIZE.x * 0.5 ,BULLET_SIZE.y *1.5,0						, BULLET_SIZE.y * 2);
+		
+		line(0					, 0					,localSize.x * 0.5	, localSize.y * 0.5);
+		line(localSize.x * 0.5, localSize.y *0.5,-localSize.x * 0.5	, localSize.y);
+		line(-localSize.x * 0.5,localSize.y 	,localSize.x * 0.5	, localSize.y * 1.5);
+		line(localSize.x * 0.5 ,localSize.y *1.5,0						, localSize.y * 2);
 		popMatrix();
 	}
 
@@ -125,8 +131,8 @@ class Sprite{
 		noStroke();
 		fill(colPlayer);
 		ellipseMode(CORNER);
-		ellipse(localPosition.x, localPosition.y + PLAYER_SIZE.y * 0.25, PLAYER_SIZE.x, PLAYER_SIZE.y * 0.5);
-		ellipse(localPosition.x + PLAYER_SIZE.x * 0.25, localPosition.y, PLAYER_SIZE.y  * 0.5, PLAYER_SIZE.y);
+		ellipse(localPosition.x, localPosition.y + localSize.y * 0.25, localSize.x, localSize.y * 0.5);
+		ellipse(localPosition.x + localSize.x * 0.25, localPosition.y, localSize.y  * 0.5, localSize.y);
 	}
 
 	void drawPixel(){
