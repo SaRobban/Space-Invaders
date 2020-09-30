@@ -12,5 +12,7 @@ final PVector ENEMY_SPEED = new PVector(50, 5);
 final PVector ENEMY_SIZE = new PVector(30, 30);
 final float ENEMY_SHOOT_DELAY = 1.2f;
 final int ENEMY_VALUE = 100;
+final float UFO_SPEED = 250;
+final int UFO_VALUE = 1000;
 final float ENEMY_FORMATION_SPACING = 30;
 final float ENEMY_FORMATION_WALL_PADDING = 30;
