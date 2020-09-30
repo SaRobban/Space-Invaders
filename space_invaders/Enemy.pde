@@ -20,6 +20,8 @@ class Enemy extends Entity{
 
 	public void die() {
 		score += value;
+		killCount++;
+		enemyManager.killsSinceLastUFO++;
 	}
 
 	public void shoot() {

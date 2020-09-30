@@ -69,8 +69,6 @@ class UserInterface{
 	}
 
 	public void drawGameOver() {
-//TODO: reset timeSinceDeath on new Game.
-//TODO: state		
 		timeSinceDeath += clock.deltaTime();
 		color fade = lerpColor(color(0,0,0,0), colMainBG, timeSinceDeath * 0.1);
 

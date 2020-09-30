@@ -14,6 +14,7 @@ State gameState;
 boolean gameOver; // TODO: Remove this.
 int score;
 int highScore;
+int killCount;
 
 void setup() {
 	size(600, 800);
@@ -50,7 +51,6 @@ void update() {
 
 void draw() {
 	update();
-
 	background(0);
 
 	if(gameState == State.MENU){
@@ -80,7 +80,6 @@ void startGame() {
 	reset();
 
 	enemyManager.createEnemyGroup(100, ENEMY_SIZE, ENEMY_SPEED, 7, 4);
-
 	gameOver = false;
 	gameState = State.PLAYING;
 }
@@ -92,6 +91,9 @@ void reset() {
 	player.reset();
 	player.position.set((width - player.size.x) / 2, 740);
 	ui.reset();
+
+	score = 0;
+	killCount = 0;
 }
 
 void gameOver() {
