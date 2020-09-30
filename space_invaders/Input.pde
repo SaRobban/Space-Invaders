@@ -2,12 +2,29 @@ class Input {
 	public boolean left, right;
 	public boolean fire;
 
+	public boolean anyKey;
+	public boolean anyKeyDown;
+
 	public void keyPressed() {
 		onKey(true);
 	}
 
 	public void keyReleased() {
 		onKey(false);
+	}
+
+	public void update() {
+		anyKeyDown = false;
+
+		if (keyPressed) {
+			if (!anyKey) {
+				anyKeyDown = true;
+				anyKey = true;
+			}
+		}
+		else {
+			anyKey = false;
+		}
 	}
 
 	private void onKey(boolean pressed) {

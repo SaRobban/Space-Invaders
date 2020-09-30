@@ -28,8 +28,10 @@ void setup() {
 void update() {
 	float deltaTime = clock.tick();
 
+	input.update();
+
 	if(gameState == State.MENU){
-		if(input.fire){
+		if(input.anyKeyDown){
 			startGame();
 		}
 
@@ -41,9 +43,8 @@ void update() {
 	}
 
 	if(gameState == State.GAME_OVER){
-		if(input.fire){
+		if(input.anyKeyDown){
 			gameState = State.MENU;
-			input.fire = false;
 		}
 	}
 }
@@ -60,7 +61,7 @@ void draw() {
 		shield.draw();
 		enemyManager.draw();
 		player.draw();
-		vFXManager.draw();	
+		vFXManager.draw();
 	}
 
 	if(gameState == State.GAME_OVER){
