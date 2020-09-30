@@ -1,6 +1,7 @@
 class Enemy extends Entity{
 	float speed;
 	Sprite sprite;
+	int value = ENEMY_VALUE;
 
 	Enemy(PVector pos, PVector dir, PVector size){
 		super(pos, dir, size);
@@ -12,7 +13,13 @@ class Enemy extends Entity{
 		sprite.draw(position);
 	}
 
-	public void getShot() {}
+	public void getShot() {
+		die();
+	}
+
+	public void die() {
+		score += value;
+	}
 
 	public void shoot() {
 		PVector bulletPos = new PVector(

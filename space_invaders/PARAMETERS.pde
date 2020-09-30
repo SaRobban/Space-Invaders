@@ -10,3 +10,4 @@ final int PLAYER_HEALTH = 3;
 final PVector ENEMY_SPEED = new PVector(50, 5);
 final PVector ENEMY_SIZE = new PVector(30, 30);
 final float ENEMY_FORMATION_SPACING = 30;
+final int ENEMY_VALUE = 100;

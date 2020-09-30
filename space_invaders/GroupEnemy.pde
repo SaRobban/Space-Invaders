@@ -7,7 +7,8 @@ class GroupEnemy extends Enemy {
 	}
 
 	@Override
-	public void getShot() {
+	public void die() {
+		super.die();
 		group.onEnemyDead(this);
 	}
 }

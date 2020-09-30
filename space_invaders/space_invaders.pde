@@ -8,6 +8,7 @@ Player player;
 
 // State
 boolean gameOver;
+int score;
 
 void setup() {
 	size(800, 800);
