@@ -9,9 +9,11 @@ Player player;
 // State
 boolean gameOver;
 int score;
+int highScore;
 
 void setup() {
 	size(800, 800);
+	loadHighScore();
 
 	player = new Player(400, 740, PLAYER_SIZE.x, PLAYER_SIZE.y, 240);
 	shield = new Shield(new PVector(500, 500), 50);
@@ -47,6 +49,32 @@ void keyPressed() {
 void keyReleased() {
 	input.keyReleased();
 }
+
+void gameOver() {
+	if (gameOver) return;
+
+	println("Game over!");
+	gameOver = true;
+	if (score > highScore) {
+		highScore = score;
+		saveHighScore();
+	}
+}
+
+void loadHighScore() {
+	if (!dataFile("../save.json").isFile()) return;
+
+	JSONObject json = loadJSONObject("save.json");
+	highScore = json.getInt("highScore");
+	println("loaded hs: " + highScore);
+}
+
+void saveHighScore() {
+	JSONObject json = new JSONObject();
+	json.setInt("highScore", highScore);
+	saveJSONObject(json, "save.json");
+}
+
 
 // TODO: Move this to another file.
 void drawUI() {

@@ -40,7 +40,7 @@ class Player extends Entity {
 
 		health -= 1;
 		if (health == 0) {
-			gameOver = true;
+			gameOver();
 		}
 	}
 
