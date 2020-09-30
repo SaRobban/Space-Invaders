@@ -17,29 +17,8 @@ class Player extends Entity {
 	public void update(float dt) {
 		if (dead || gameState == State.GAME_OVER) return;
 
-		// Movement
-		float move = 0;
-		if (input.left) move -= 1;
-		if (input.right) move += 1;
-
-		position.x += move * speed * dt;
-		position.x = constrain(position.x, 0, width - size.x - 1);
-
-		// Shooting
-		fireDelay -= dt;
-		autoFireDelay -= dt;
-		if (input.fireDown) {
-			if (fireDelay <= 0) {
-				autoFireDelay = PLAYER_AUTO_FIRE_DELAY;
-				fireDelay = PLAYER_FIRE_DELAY;
-				fire();
-			}
-		}
-		else if (input.fire && autoFireDelay <= 0) {
-			autoFireDelay = PLAYER_AUTO_FIRE_DELAY;
-			fireDelay = PLAYER_FIRE_DELAY;
-			fire();
-		}
+		handleMovement(dt);
+		handleShooting(dt);
 	}
 
 	@Override
@@ -64,6 +43,32 @@ class Player extends Entity {
 		fireDelay = PLAYER_FIRE_DELAY;
 		autoFireDelay = PLAYER_AUTO_FIRE_DELAY;
 		dead = false;
+	}
+
+	private void handleMovement(float dt) {
+		float move = 0;
+		if (input.left) move -= 1;
+		if (input.right) move += 1;
+
+		position.x += move * speed * dt;
+		position.x = constrain(position.x, 0, width - size.x - 1);
+	}
+
+	private void handleShooting(float dt) {
+		fireDelay -= dt;
+		autoFireDelay -= dt;
+		if (input.fireDown) {
+			if (fireDelay <= 0) {
+				autoFireDelay = PLAYER_AUTO_FIRE_DELAY;
+				fireDelay = PLAYER_FIRE_DELAY;
+				fire();
+			}
+		}
+		else if (input.fire && autoFireDelay <= 0) {
+			autoFireDelay = PLAYER_AUTO_FIRE_DELAY;
+			fireDelay = PLAYER_FIRE_DELAY;
+			fire();
+		}
 	}
 
 	private void die() {
