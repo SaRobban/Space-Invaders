@@ -4,12 +4,13 @@ class Player extends Entity {
 	public boolean dead = false;
 
 	private float fireDelay;
+	private float autoFireDelay;
 	private Sprite sprite = new Sprite("Player");
 
 	public Player(float x, float y, float width, float height, float speed) {
 		super(x, y, width, height);
 		this.speed = speed;
-		fireDelay = PLAYER_FIRE_DELAY;
+		reset();
 	}
 
 	@Override
@@ -26,7 +27,16 @@ class Player extends Entity {
 
 		// Shooting
 		fireDelay -= dt;
-		if (input.fire && fireDelay <= 0) {
+		autoFireDelay -= dt;
+		if (input.fireDown) {
+			if (fireDelay <= 0) {
+				autoFireDelay = PLAYER_AUTO_FIRE_DELAY;
+				fireDelay = PLAYER_FIRE_DELAY;
+				fire();
+			}
+		}
+		else if (input.fire && autoFireDelay <= 0) {
+			autoFireDelay = PLAYER_AUTO_FIRE_DELAY;
 			fireDelay = PLAYER_FIRE_DELAY;
 			fire();
 		}
@@ -52,6 +62,7 @@ class Player extends Entity {
 	public void reset() {
 		health = PLAYER_HEALTH;
 		fireDelay = PLAYER_FIRE_DELAY;
+		autoFireDelay = PLAYER_AUTO_FIRE_DELAY;
 		dead = false;
 	}
 

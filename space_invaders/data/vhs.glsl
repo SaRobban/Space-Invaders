@@ -1,6 +1,6 @@
 //
 // Original shader credit: FMS_Cat
-// https://www.shadertoy.com/view/XtBXDt
+// https://www.shadertoy.com/user/FMS_Cat
 //
 
 // -------
