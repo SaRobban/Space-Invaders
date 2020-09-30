@@ -68,7 +68,7 @@ class EnemyManager{
 
 			// Lose if enemy hit the bottom of the screen.
 			if (enemy.position.y + enemy.size.y >= height - 1) {
-				gameOver = true;
+				gameOver();
 			}
 		}
 	}

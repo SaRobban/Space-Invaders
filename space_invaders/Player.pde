@@ -1,6 +1,4 @@
 class Player extends Entity {
-	private static final float FIRE_DELAY = 0.5f;
-
 	public float speed;
 	public int health = PLAYER_HEALTH;
 
@@ -20,11 +18,12 @@ class Player extends Entity {
 		if (input.right) move += 1;
 
 		position.x += move * speed * dt;
+		position.x = constrain(position.x, 0, width - size.x - 1);
 
 		// Shooting
 		fireDelay -= dt;
 		if (input.fire && fireDelay <= 0) {
-			fireDelay = FIRE_DELAY;
+			fireDelay = PLAYER_FIRE_DELAY;
 			fire();
 		}
 	}
@@ -41,7 +40,7 @@ class Player extends Entity {
 
 		health -= 1;
 		if (health == 0) {
-			gameOver = true;
+			gameOver();
 		}
 	}
 
