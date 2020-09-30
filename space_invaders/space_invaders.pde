@@ -6,17 +6,20 @@ VFXManager vFXManager = new VFXManager();
 Shield shield;
 Player player;
 
+UserInterface ui;
 // State
 boolean gameOver;
 int score;
 
 void setup() {
-	size(800, 800);
+	size(600, 800);
 
 	player = new Player(400, 740, PLAYER_SIZE.x, PLAYER_SIZE.y, 240);
 	shield = new Shield(new PVector(500, 500), 50);
 
 	enemyManager.createEnemyGroup(100, ENEMY_SIZE, ENEMY_SPEED, 8, 4);
+
+	ui = new UserInterface(); 
 }
 
 void update() {
@@ -37,7 +40,8 @@ void draw() {
 	enemyManager.draw();
 	player.draw();
 	vFXManager.draw();
-	drawUI();
+	ui.drawUI();
+	ui.drawHUD();
 }
 
 void keyPressed() {
@@ -46,14 +50,4 @@ void keyPressed() {
 
 void keyReleased() {
 	input.keyReleased();
-}
-
-// TODO: Move this to another file.
-void drawUI() {
-	if (gameOver) {
-		fill(255);
-		textAlign(CENTER, CENTER);
-		textSize(42);
-		text("Game Over", width / 2, height / 2);
-	}
 }
