@@ -86,7 +86,6 @@ class BulletManager{
 					Enemy enemy = enemyManager.enemyList.get(j);
 					if (enemy.isCollidingWith(bullet)) {
 						removeThisBullet(i);
-						enemyManager.enemyList.remove(j);
 						enemy.getShot();
 						i--;
 						j--;

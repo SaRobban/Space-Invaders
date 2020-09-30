@@ -50,6 +50,11 @@ class EnemyManager{
 	}
 
 
+	public void onEnemyDead(Enemy enemy) {
+		removeEnemyFromList(enemy);
+	}
+
+
 	public void update(float deltaTime){
 		for (int i = 0; i < groups.size(); i++) {
 			EnemyGroup group = groups.get(i);
