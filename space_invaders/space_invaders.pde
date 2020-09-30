@@ -62,6 +62,9 @@ void startGame() {
 	reset();
 
 	enemyManager.createEnemyGroup(100, ENEMY_SIZE, ENEMY_SPEED, 7, 4);
+
+	gameOver = false;
+	gameState = State.PLAYING;
 }
 
 void reset() {
@@ -70,9 +73,6 @@ void reset() {
 	vFXManager.reset();
 	player.reset();
 	player.position.set((width - player.size.x) / 2, 740);
-
-	gameOver = false;
-	gameState = State.PLAYING;
 }
 
 void gameOver() {
