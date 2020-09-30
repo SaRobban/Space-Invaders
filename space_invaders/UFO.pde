@@ -5,7 +5,7 @@ class UFO extends Enemy{
 		super(pos, dir, size);
 		super.sprite = new Sprite("UFO");
 		this.speed = speed;
-		super.value = 1000;
+		super.value = UFO_VALUE;
 	}
 
 	@Override
