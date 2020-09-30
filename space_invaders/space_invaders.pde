@@ -58,6 +58,7 @@ void update() {
 void draw() {
 	update();
 	background(0);
+	drawBackGround();
 
 	if(gameState == State.MENU){
 		ui.drawTitle();
@@ -129,4 +130,19 @@ void saveHighScore() {
 	JSONObject json = new JSONObject();
 	json.setInt("highScore", highScore);
 	saveJSONObject(json, "save.json");
+}
+
+
+void drawBackGround(){
+		stroke(color(0,0,255,255));
+		strokeWeight(2);
+		line(0,700,width,700);
+		line(0,710,width,710);
+		line(0,730,width,730);
+		line(0,770,width,770);
+		
+		line(width * 0.2,700,0,height);
+		line(width * 0.4,700,width * 0.3,height);
+		line(width * 0.6,700,width * 0.7,height);
+		line(width * 0.8,700,width,height);
 }

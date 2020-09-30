@@ -18,6 +18,6 @@ class UFO extends Enemy{
 
 	@Override
 	public void draw(){
-		sprite.draw(position);
+		sprite.draw(position, size);
 	}
 }
