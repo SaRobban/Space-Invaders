@@ -1,15 +1,18 @@
 class Sprite{
 	String type;
 	PVector localPosition;
+	PVector localSize;
+
 	String enemy = 	new String("Enemy");
 	String player = new String("Player");
 	String bullet = new String("Bullet");
 	String ufo = new String("UFO");
 
-	color colEnemy =  color(255, 0, 0, 255);
-	color colPlayer = color(0, 255, 0, 255);
-	color colBullet = color(0, 0, 255, 255);
-	color colUFO = color(0, 0, 255, 255);
+	color colEnemy =  			color(200, 32, 0, 255);
+	color colPlayer = 			color(0, 200, 100, 255);
+	color colBullet = 			color(255, 255, 255, 255);
+	color colBulletOutline = 	color(0, 0, 255, 255);
+	color colUFO = 				color(0, 0, 255, 255);
 
 	Sprite(String type){
 		this.type = type;
@@ -20,6 +23,25 @@ class Sprite{
 	void draw(PVector pos){
 
 		localPosition = pos;
+		localSize = ENEMY_SIZE.copy();
+
+		if(type.equals(enemy)){
+			drawEnemy();
+		}else if(type.equals(bullet)){
+			drawBullet();
+		}else if(type.equals(player)){
+			drawPlayer();
+		}else if(type.equals(ufo)){
+			drawUFO();
+		}else{
+			drawPixel();
+		}
+	}
+
+	void draw(PVector pos, PVector size){
+
+		localPosition = pos;
+		localSize = size;
 
 		if(type.equals(enemy)){
 			drawEnemy();
@@ -73,9 +95,30 @@ class Sprite{
 
 	void drawBullet(){
 		noStroke();
-		fill(colBullet);
+		fill(colBullet);		
 		ellipseMode(CORNER);
 		ellipse(localPosition.x, localPosition.y, BULLET_SIZE.x, BULLET_SIZE.y);
+	}
+
+	void drawEnemyBullet(PVector pos){
+		localPosition = pos;
+		pushMatrix();
+		translate(localPosition.x, localPosition.y);
+		strokeWeight(4);
+		stroke(color(255,0,0,128));
+
+		line(0					, 0					,BULLET_SIZE.x * 0.5	, BULLET_SIZE.y * 0.5);
+		line(BULLET_SIZE.x * 0.5, BULLET_SIZE.y *0.5,-BULLET_SIZE.x * 0.5	, BULLET_SIZE.y);
+		line(-BULLET_SIZE.x * 0.5,BULLET_SIZE.y 	,BULLET_SIZE.x * 0.5	, BULLET_SIZE.y * 1.5);
+		line(BULLET_SIZE.x * 0.5 ,BULLET_SIZE.y *1.5,0						, BULLET_SIZE.y * 2);
+
+		strokeWeight(2);
+		stroke(color(255,255,200,255));
+		line(0					, 0					,BULLET_SIZE.x * 0.5	, BULLET_SIZE.y * 0.5);
+		line(BULLET_SIZE.x * 0.5, BULLET_SIZE.y *0.5,-BULLET_SIZE.x * 0.5	, BULLET_SIZE.y);
+		line(-BULLET_SIZE.x * 0.5,BULLET_SIZE.y 	,BULLET_SIZE.x * 0.5	, BULLET_SIZE.y * 1.5);
+		line(BULLET_SIZE.x * 0.5 ,BULLET_SIZE.y *1.5,0						, BULLET_SIZE.y * 2);
+		popMatrix();
 	}
 
 	void drawUFO(){

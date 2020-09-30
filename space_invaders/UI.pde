@@ -47,7 +47,7 @@ class UserInterface{
 			fill(colTextScore);
 			textFont(fontSmall, 12);
 			textAlign(LEFT, TOP);
-			text("Score : " + score, 10, 10);
+			text("Score : " + score + "\n" + "Wave : " + waveManager.wave, 10, 10 );
 			textFont(fontLarge, 24);
 			textAlign(CENTER, TOP);
 			text("HiScore : " + highScore, width * 0.5, 30);

@@ -69,7 +69,7 @@ class EnemyManager{
 		//Spawn UFO ?
 		if(ufoIntervall == killsSinceLastUFO){
 			print("Spawn UFO");
-			addEnemyToList(new UFO(new PVector(width, 50), new PVector(-1,0), new PVector(1,0), UFO_SPEED));
+			addEnemyToList(new UFO(new PVector(width, 50), new PVector(-1,0), ENEMY_SIZE.copy(), UFO_SPEED));
 			killsSinceLastUFO = 0;
 		}
 
