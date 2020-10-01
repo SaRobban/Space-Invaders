@@ -2,8 +2,9 @@ class Input {
 	public boolean left, right;
 	public boolean fire, fireDown;
 	public boolean anyKey, anyKeyDown;
+	public boolean pause, pauseDown;
 
-	private boolean oldFire;
+	private boolean oldFire, oldPause;
 
 	public void keyPressed() {
 		onKey(true);
@@ -28,6 +29,9 @@ class Input {
 
 		fireDown = !oldFire && fire;
 		if (fireDown) oldFire = fire;
+
+		pauseDown = !oldPause && pause;
+		if (pauseDown) oldPause = pause;
 	}
 
 	private void onKey(boolean pressed) {
@@ -40,6 +44,13 @@ class Input {
 		else if (keyCode == UP || key == 'w' || key == ' ') {
 			oldFire = fire;
 			fire = pressed;
+		}
+		else if (keyCode == ESC) {
+			oldPause = pause;
+			pause = pressed;
+
+			// Hack to prevent processing from quitting when escape is pressed.
+			key = 0;
 		}
 	}
 }

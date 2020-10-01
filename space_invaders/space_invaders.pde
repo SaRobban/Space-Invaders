@@ -1,4 +1,4 @@
-enum State { MENU, PLAYING, GAME_OVER }
+enum State { MENU, PLAYING, PAUSED, GAME_OVER }
 
 Clock clock = new Clock();
 Input input = new Input();
@@ -53,6 +53,15 @@ void update() {
 			gameState = State.MENU;
 		}
 	}
+
+	if (gameState == State.PLAYING) {
+		if (input.pauseDown)
+			gameState = State.PAUSED;
+	}
+	else if (gameState == State.PAUSED) {
+		if (input.pauseDown)
+			gameState = State.PLAYING;
+	}
 }
 
 void draw() {
@@ -62,7 +71,7 @@ void draw() {
 
 	if(gameState == State.MENU){
 		ui.drawTitle();
-	}else if (gameState == State.PLAYING || gameState == State.GAME_OVER) {
+	}else if (gameState == State.PLAYING || gameState == State.GAME_OVER || gameState == State.PAUSED) {
 		bulletManager.draw();
 		shield.draw();
 		enemyManager.draw();
@@ -74,8 +83,15 @@ void draw() {
 		ui.drawGameOver();
 	}
 
-	if(gameState == State.PLAYING){
+	if(gameState == State.PLAYING || gameState == State.PAUSED){
 		ui.drawHUD();
+	}
+
+	if (gameState == State.PAUSED) {
+		// TODO: Move this to UI.
+		textAlign(CENTER, CENTER);
+		textSize(42);
+		text("PAUSED", width / 2, height / 2);
 	}
 
 	// Apply VHS filter.
@@ -140,7 +156,7 @@ void drawBackGround(){
 		line(0,710,width,710);
 		line(0,730,width,730);
 		line(0,770,width,770);
-		
+
 		line(width * 0.2,700,0,height);
 		line(width * 0.4,700,width * 0.3,height);
 		line(width * 0.6,700,width * 0.7,height);
