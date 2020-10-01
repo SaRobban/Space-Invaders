@@ -26,7 +26,7 @@ void setup() {
 
 	loadHighScore();
 	ui = new UserInterface();
-	player = new Player(400, 740, PLAYER_SIZE.x, PLAYER_SIZE.y, 240);
+	player = new Player(400, 740, PLAYER_SIZE.x, PLAYER_SIZE.y, PLAYER_SPEED);
 
 	gameState = State.MENU;
 }
