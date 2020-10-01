@@ -28,36 +28,40 @@ class UserInterface{
 
 		//Title text
 		fill(colTextDefault);
-		textAlign(CENTER, CENTER);
+		textAlign(CENTER, BOTTOM);
 		textFont(fontTitle, 72);
-		text("SPÄJS INVÄDORS", width * 0.5, 375);
+		text("SPÄJS INVÄDORS", width * 0.5, 355);
 		stroke(colTextDefault);
 		strokeWeight(4);
-		line(0, height * 0.5, 120, height * 0.5);
-		line(150, height * 0.5, 190, height * 0.5);
-		line(220, height * 0.5, width, height * 0.5);
+		line(0, 342, 120, 342);
+		line(150, 342, 190, 342);
+		line(220, 342, width, 342);
 
 		//Sub text
 		textFont(fontLarge, 24);
 		float animV = sin(millis() * 0.01) +1;
 		color animHiS = lerpColor(colTextHiScore, color (255,255,255,255), animV * 0.5);
 		fill(animHiS);
-		text("PRESS ANY KEY", width * 0.5, height * 0.6 + 20);
+		text("PRESS ANY KEY", width * 0.5, height * 0.5);
+		textAlign(CENTER, TOP);
 		textFont(fontSmall, 18);
-		text("Coins : 3", width * 0.5, height * 0.6);
+		text("Credz : 3", width * 0.5, height * 0.52);
 
 		//Creds //scrolla?
-		text("A game by:", width * 0.5, height * 0.8);
-		textAlign(RIGHT);
+		//textAlign(CENTER,BOTTOM);
+		text("Made by:", width * 0.5, height * 0.8);
+		textAlign(RIGHT,TOP);
 		text("\n\nDeep thought:", width * 0.5, height * 0.8);
 		text("\n\n\nCoffee drinking:", width * 0.5, height * 0.8);
-		textAlign(LEFT);
+		textAlign(LEFT,TOP);
 		text("\n\nJonatan Johansson", width * 0.5, height * 0.8);
 		text("\n\n\nRobert Sandh", width * 0.5, height * 0.8);
 		textAlign(CENTER);
 		text("\n \n \n \n" + "Noize by:", width * 0.5, height * 0.85);
 		textFont(fontSmall, 9);
 		text("\n \n \n \n \n" + "https://www.classicgaming.cc/classics/space-invaders/sounds", width * 0.5, height * 0.9);
+		text("\n \n \n \n \n \n" + "https://www.shadertoy.com/user/FMS_Cat", width * 0.5, height * 0.9);
+		
 
 	}
 
