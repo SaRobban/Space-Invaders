@@ -7,7 +7,7 @@ EnemyManager enemyManager = new EnemyManager();
 WaveManager waveManager = new WaveManager();
 VFXManager vFXManager = new VFXManager();
 UserInterface ui;
-Shield shield;
+ShieldManager shieldManager;
 Player player;
 
 PShader vhsShader;
@@ -73,7 +73,7 @@ void draw() {
 		ui.drawTitle();
 	}else if (gameState == State.PLAYING || gameState == State.GAME_OVER || gameState == State.PAUSED) {
 		bulletManager.draw();
-		shield.draw();
+		shieldManager.draw();
 		enemyManager.draw();
 		player.draw();
 		vFXManager.draw();
@@ -118,7 +118,7 @@ void reset() {
 	player.position.set((width - player.size.x) / 2, 740);
 	ui.reset();
 
-	shield = new Shield(new PVector(500, 500), 50);
+	shieldManager = new ShieldManager();
 	score = 0;
 	killCount = 0;
 }
