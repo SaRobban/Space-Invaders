@@ -33,7 +33,7 @@ void setup() {
 	sound = new Sound(this);
 	sound.volume(0.5f);
 	sounds = new Sounds(this);
-	sounds.music.play();
+	sounds.music.loop();
 
 	loadHighScore();
 	ui = new UserInterface();

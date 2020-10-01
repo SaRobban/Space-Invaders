@@ -18,6 +18,6 @@ class Sounds {
 		explosion = new SoundFile(applet, "explosion.wav");
 		ufo = new SoundFile(applet, "ufo_lowpitch.wav");
 
-		music = new SoundFile(applet, "spaceinvaders1.mp3");
+		music = new SoundFile(applet, "spaceinvaders1.wav");
 	}
 }
