@@ -1,3 +1,5 @@
+// Robert
+
 class VFX extends Entity{
 	boolean alive = true;
 	float maxSize;
@@ -32,7 +34,7 @@ class VFX extends Entity{
 
 
 	private void randomPos(float value){
-		
+
 		float off = size * 0.5;
 		randPosA = new PVector(random(-value, value) -off, random(-value, value) -off);
 		randPosB = new PVector(random(-value, value) -off, random(-value, value) -off);
@@ -48,10 +50,10 @@ class VFX extends Entity{
 
 	@Override
 	public void update(float deltaTime){
-		size += maxSize * mulScale * mulScale * deltaTime; 
-		colAlphaA -= 319 * mulScale * deltaTime * 2; 
-		colAlphaB -= 255 * mulScale * mulScale * deltaTime; 
-		
+		size += maxSize * mulScale * mulScale * deltaTime;
+		colAlphaA -= 319 * mulScale * deltaTime * 2;
+		colAlphaB -= 255 * mulScale * mulScale * deltaTime;
+
 		yellow = color (255, 255 - colAlphaA * 0.5,128 - colAlphaA, colAlphaA);
 		gray = color (64,64,64, 225);// colAlphaB);
 
@@ -63,23 +65,23 @@ class VFX extends Entity{
 	@Override
 	public void draw(){
 		noStroke();
-		
+
 
 		pushMatrix();
 		translate(position.x, position.y);
 		//rotate(frameCount / -100.0);
-		
+
 
 		fill(gray);
 		star(randPosA.x, randPosA.y, size, size, 12);
 		star(randPosB.x, randPosB.y, size * 0.75, size * 0.75f, 12);
 		star(randPosC.x, randPosC.y, size * 0.5, size * 0.5f, 12);
 		star(randPosD.x, randPosD.y, size * 0.25, size * 0.25f, 12);
-		star(randPosE.x, randPosE.y, size * 0.25, size * 0.25f, 12);	
-			
-		
+		star(randPosE.x, randPosE.y, size * 0.25, size * 0.25f, 12);
+
+
 		fill(yellow);
-		star(0, 0, size * 0.5, size * 1.5f, 5); 
+		star(0, 0, size * 0.5, size * 1.5f, 5);
 
 		popMatrix();
 	}

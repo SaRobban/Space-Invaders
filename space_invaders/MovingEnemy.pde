@@ -1,3 +1,5 @@
+// Jonatan
+
 class MovingEnemy extends Enemy {
 	public float speed;
 

@@ -1,3 +1,5 @@
+// Robert
+
 class UserInterface{
 	PFont fontLarge;
 	PFont fontSmall;
@@ -10,6 +12,10 @@ class UserInterface{
 	color colTextHiScore = color(255,230,0,255);
 	float timeSinceDeath = 0.0;
 	boolean newHiScore = true;
+
+	Sprite healthIcon = new Sprite("Player");
+	PVector healthIconPos = new PVector();
+	PVector healthIconSize = new PVector(30, 30);
 
 	UserInterface(){
 		fontLarge = loadFont("LargeText-24.vlw");
@@ -58,13 +64,14 @@ class UserInterface{
 			color animHiS = lerpColor(colTextHiScore, color (255,255,255,255), animV * 0.5);
 			fill(animHiS);
 			textFont(fontLarge, 24);
-			
-			
+
+
 			text("---+NewHiScore : " + score + " +---", width * 0.5, 20);
 		}
 
-		for(int i = 0; i < PLAYER_HEALTH; i++){
-			text("-", 450 + (i*50), 50);
+		for(int i = 0; i < player.health; i++){
+			healthIconPos.set(450 + i*50, 50);
+			healthIcon.draw(healthIconPos, healthIconSize);
 		}
 	}
 
@@ -103,7 +110,7 @@ class UserInterface{
 		//TODO: This
 		// Set the stroke color by hue.
 	/*
-	
+
 	*/
 	}
 

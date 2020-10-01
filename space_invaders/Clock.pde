@@ -1,3 +1,5 @@
+// Jonatan
+
 // A simple clock that keeps track of time and delta time.
 class Clock {
 	private int time;
