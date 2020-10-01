@@ -83,26 +83,28 @@ class UserInterface{
 		fill(fade);
 		rect(0,0,width,height);
 
+		float yOffset = -50;
+
 		fill(colTextDefault);
 		textAlign(CENTER, CENTER);
 		textFont(fontLarge, 24);
-		text("Game Over", width / 2, height / 2);
+		text("Game Over", width / 2, height / 2 + yOffset);
 		textFont(fontSmall, 18);
 
 		if(newHiScore){
-			text("Your new HiScore", width * 0.5, height * 0.6);
+			text("Your new HiScore", width * 0.5, height * 0.6 + yOffset);
 			textFont(fontLarge, 24);
 			float animV = sin(millis() * 0.01) +1;
 			color animHiS = lerpColor(colTextHiScore, color (255,255,255,255), animV * 0.5);
 			fill(animHiS);
-			text(score, width * 0.5, height * 0.6 + 20);
+			text(score, width * 0.5, height * 0.6 + 20 + yOffset);
 		}else{
-			text("Your score", width * 0.5, height * 0.6);
+			text("Your score", width * 0.5, height * 0.6 + yOffset);
 			textFont(fontLarge, 24);
 			float animV = sin(millis() * 0.01) +1;
 			color animHiS = lerpColor(colTextHiScore, color (255,255,255,255), animV * 0.5);
 			fill(animHiS);
-			text(score, width * 0.5, height * 0.6 + 20);
+			text(score, width * 0.5, height * 0.6 + 20 + yOffset);
 		}
 	}
 

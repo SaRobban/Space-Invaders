@@ -9,7 +9,7 @@ EnemyManager enemyManager = new EnemyManager();
 WaveManager waveManager = new WaveManager();
 VFXManager vFXManager = new VFXManager();
 UserInterface ui;
-ShieldManager shieldManager;
+ShieldManager shieldManager = new ShieldManager();
 Player player;
 
 PShader vhsShader;
