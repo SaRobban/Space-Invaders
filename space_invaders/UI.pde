@@ -58,12 +58,12 @@ class UserInterface{
 			color animHiS = lerpColor(colTextHiScore, color (255,255,255,255), animV * 0.5);
 			fill(animHiS);
 			textFont(fontLarge, 24);
-			
-			
+
+
 			text("---+NewHiScore : " + score + " +---", width * 0.5, 20);
 		}
 
-		for(int i = 0; i < PLAYER_HEALTH; i++){
+		for(int i = 0; i < player.health; i++){
 			text("-", 450 + (i*50), 50);
 		}
 	}
@@ -103,7 +103,7 @@ class UserInterface{
 		//TODO: This
 		// Set the stroke color by hue.
 	/*
-	
+
 	*/
 	}
 
