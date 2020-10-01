@@ -100,6 +100,20 @@ class BulletManager{
 				i--;
 				continue;
 			}
+
+			// Bullet bullet collision
+			for (int j = 0; j < bulletsList.size(); j++) {
+				if (i == j) continue;
+				Bullet bullet2 = bulletsList.get(j);
+				if (bullet.faction == bullet2.faction) continue;
+				if (bullet.isCollidingWith(bullet2)) {
+					removeThisBullet(i);
+					if (j >= i)
+						j--;
+					i--;
+					removeThisBullet(j);
+				}
+			}
 		}
 	}
 
