@@ -51,7 +51,7 @@ class Shield extends Entity{
 			for(int y = 0; y < length -1; y++){
 				if(pixs[x][y].active){
 					if(otherX == pixs[x][y].position.x && otherY == pixs[x][y].position.y){
-						makeHole(otherPos); 
+						makeHole(otherPos);
 						collided = true;
 					}
 				}
@@ -98,6 +98,7 @@ class Shield extends Entity{
 	}
 
 
+	@Override
 	public void draw(){
 		for(int x = 0; x < length -1; x++){
 			for(int y = 0; y < length -1; y++){
