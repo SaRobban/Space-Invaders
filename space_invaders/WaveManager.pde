@@ -11,8 +11,7 @@ class WaveManager {
 			currentSpeed.set(ENEMY_SPEED);
 		currentSpeed.mult(1.1f);
 
-		//enemyManager.reset();
-		enemyManager.createEnemyGroup(-220, ENEMY_SIZE, currentSpeed, 7, 4);
+		enemyManager.createEnemyGroup(-220, ENEMY_SIZE.copy(), currentSpeed.copy(), 7, 4);
 	}
 
 	public void reset() {
