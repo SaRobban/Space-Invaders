@@ -112,6 +112,9 @@ class BulletManager{
 						j--;
 					i--;
 					removeThisBullet(j);
+
+					if (gameState == State.PLAYING)
+						score += BULLET_VALUE;
 				}
 			}
 		}
