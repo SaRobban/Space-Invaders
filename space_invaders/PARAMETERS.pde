@@ -2,6 +2,7 @@
 final float PLAYER_BULLET_SPEED = 200;
 final float ENEMY_BULLET_SPEED = 150;
 final PVector BULLET_SIZE = new PVector(5, 5);
+final float BULLET_VALUE = 10;
 
 // Player
 final float PLAYER_SPEED = 150;
