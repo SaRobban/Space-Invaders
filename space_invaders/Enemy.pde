@@ -26,6 +26,6 @@ class Enemy extends Entity{
 		PVector bulletPos = new PVector(
 			position.x + size.x / 2,
 			position.y + size.y);
-		bulletManager.createBullet(bulletPos, direction.copy(), BULLET_SIZE.copy(), BULLET_SPEED, Faction.ENEMY);
+		bulletManager.createBullet(bulletPos, direction.copy(), BULLET_SIZE.copy(), ENEMY_BULLET_SPEED, Faction.ENEMY);
 	}
 }
