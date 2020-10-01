@@ -26,7 +26,7 @@ void setup() {
 
 	loadHighScore();
 	ui = new UserInterface();
-	player = new Player(400, 740, PLAYER_SIZE.x, PLAYER_SIZE.y, PLAYER_SPEED);
+	player = new Player(400, 740, PLAYER_SIZE.x, PLAYER_SIZE.y, 240);
 
 	gameState = State.MENU;
 }
@@ -95,8 +95,8 @@ void draw() {
 	}
 
 	// Apply VHS filter.
-	vhsShader.set("iTime", clock.time());
-	filter(vhsShader);
+	//vhsShader.set("iTime", clock.time());
+	//filter(vhsShader);
 }
 
 void keyPressed() { input.keyPressed(); }

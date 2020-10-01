@@ -69,10 +69,8 @@ class EnemyManager{
 		//Spawn UFO ?
 		if(ufoIntervall == killsSinceLastUFO){
 			//print("Spawn UFO");
-
 			int randomDir = int(random(-1, 2));
 			int point = 0;
-
 			if(randomDir <= 0){
 				randomDir = -1;
 				point = width;
