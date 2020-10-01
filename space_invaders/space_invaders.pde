@@ -16,7 +16,6 @@ UserInterface ui;
 Player player;
 
 PShader vhsShader;
-Sound sound;
 
 // State
 State gameState;
@@ -30,8 +29,6 @@ void setup() {
 	vhsShader = loadShader("vhs.glsl");
 	vhsShader.set("iResolution", width, height, 1.0f);
 
-	sound = new Sound(this);
-	sound.volume(0.5f);
 	sounds = new Sounds(this);
 	sounds.music.loop();
 
