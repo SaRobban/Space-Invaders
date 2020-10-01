@@ -45,6 +45,11 @@ class UserInterface{
 		text("PRESS ANY KEY", width * 0.5, height * 0.6 + 20);
 		textFont(fontSmall, 18);
 		text("Coins : 3", width * 0.5, height * 0.6);
+
+		//Creds
+		text("A game by: " + "Jonatan Johansson " + "\n" + 
+			"Coffee drinking by: " + "Robert Sandh" + "\n" +
+			"Noize from: " + "https://www.classicgaming.cc/classics/space-invaders/sounds", width * 0.5, height * 0.8);
 	}
 
 	void drawHUD(){
