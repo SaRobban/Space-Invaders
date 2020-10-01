@@ -1,4 +1,4 @@
-// TODO: Increasing difficulty.
+// Jonatan
 
 class WaveManager {
 	public int wave;

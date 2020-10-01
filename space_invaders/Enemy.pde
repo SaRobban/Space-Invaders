@@ -1,3 +1,5 @@
+// Robert, Jonatan
+
 class Enemy extends Entity{
 	float speed;
 	Sprite sprite;

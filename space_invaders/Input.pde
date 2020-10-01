@@ -1,3 +1,5 @@
+// Jonatan
+
 class Input {
 	public boolean left, right;
 	public boolean fire, fireDown;

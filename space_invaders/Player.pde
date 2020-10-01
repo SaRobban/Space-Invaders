@@ -1,3 +1,5 @@
+// Jonatan
+
 class Player extends Entity {
 	public float speed;
 	public int health = PLAYER_HEALTH;

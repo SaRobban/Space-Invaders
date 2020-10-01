@@ -1,3 +1,5 @@
+// Jonatan, Robert
+
 enum State { MENU, PLAYING, PAUSED, GAME_OVER }
 
 Clock clock = new Clock();

@@ -1,3 +1,5 @@
+// Jonatan
+
 class GroupEnemy extends Enemy {
 	public EnemyGroup group;
 
