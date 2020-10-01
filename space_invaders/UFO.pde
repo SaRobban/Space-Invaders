@@ -11,7 +11,14 @@ class UFO extends Enemy{
 	@Override
 	public void update(float deltaT) {
 		position.add(new PVector(direction.x * speed * deltaT, direction.y * speed * deltaT));
-		if(position.x < 0){
+		
+		if(position.x < 0 && direction.x == -1){
+			//print("UFO removed");
+			enemyManager.removeEnemyFromList(this);
+		}
+
+		if(position.x > width && direction.x == 1){
+			//print("UFO removed");
 			enemyManager.removeEnemyFromList(this);
 		}
 	}

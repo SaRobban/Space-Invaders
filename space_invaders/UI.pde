@@ -62,6 +62,10 @@ class UserInterface{
 			
 			text("---+NewHiScore : " + score + " +---", width * 0.5, 20);
 		}
+
+		for(int i = 0; i < PLAYER_HEALTH; i++){
+			text("-", 450 + (i*50), 50);
+		}
 	}
 
 	public void drawGameOver() {

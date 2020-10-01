@@ -2,7 +2,7 @@ class EnemyManager{
 	public ArrayList<Enemy> enemyList;
 	public ArrayList<EnemyGroup> groups;
 
-	int ufoIntervall = 10;
+	int ufoIntervall = 20;
 	int killsSinceLastUFO = 0;
 
 	public EnemyManager(){
@@ -68,8 +68,17 @@ class EnemyManager{
 	public void update(float deltaTime){
 		//Spawn UFO ?
 		if(ufoIntervall == killsSinceLastUFO){
-			print("Spawn UFO");
-			addEnemyToList(new UFO(new PVector(width, 50), new PVector(-1,0), ENEMY_SIZE.copy(), UFO_SPEED));
+			//print("Spawn UFO");
+
+			int randomDir = int(random(-1, 2));
+			int point = 0;
+
+			if(randomDir <= 0){
+				randomDir = -1;
+				point = width;
+			}
+
+			addEnemyToList(new UFO(new PVector(point, 150), new PVector(randomDir, 0), ENEMY_SIZE.copy(), UFO_SPEED));
 			killsSinceLastUFO = 0;
 		}
 
