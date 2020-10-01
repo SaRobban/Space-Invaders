@@ -46,10 +46,19 @@ class UserInterface{
 		textFont(fontSmall, 18);
 		text("Coins : 3", width * 0.5, height * 0.6);
 
-		//Creds
-		text("A game by: " + "Jonatan Johansson " + "\n" + 
-			"Coffee drinking by: " + "Robert Sandh" + "\n" +
-			"Noize from: " + "https://www.classicgaming.cc/classics/space-invaders/sounds", width * 0.5, height * 0.8);
+		//Creds //scrolla?
+		text("A game by:", width * 0.5, height * 0.8);
+		textAlign(RIGHT);
+		text("\n\nDeep thought:", width * 0.5, height * 0.8);
+		text("\n\n\nCoffee drinking:", width * 0.5, height * 0.8);
+		textAlign(LEFT);
+		text("\n\nJonatan Johansson", width * 0.5, height * 0.8);
+		text("\n\n\nRobert Sandh", width * 0.5, height * 0.8);
+		textAlign(CENTER);
+		text("\n \n \n \n" + "Noize by:", width * 0.5, height * 0.85);
+		textFont(fontSmall, 9);
+		text("\n \n \n \n \n" + "https://www.classicgaming.cc/classics/space-invaders/sounds", width * 0.5, height * 0.9);
+
 	}
 
 	void drawHUD(){
