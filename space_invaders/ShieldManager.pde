@@ -32,8 +32,8 @@ class ShieldManager{
 	void draw(){
 		for(int i = 0; i < shields.length; i++){
 			shields[i].draw();
-			windows();
 		}
+		windows();
 	}
 
 
@@ -43,8 +43,9 @@ class ShieldManager{
 			min -= bredd * 0.5;
 			int max = min + bredd;
 
-			fill(color(0,0,0,64));
+			fill(color(0,0,0,128));
 			rect(min-2, 630, bredd*0.35, hojd);
+
 			for(int x = min; x < max; x += 10){
 				for(int y = 633; y < 630 + hojd; y += 10){
 					fill(0,255);
