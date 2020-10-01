@@ -7,6 +7,8 @@ class EnemyGroup {
 	public int enemyCount;
 
 	private float shootTimer;
+	private boolean hasSpawnedNextWave;
+	private int killsSinceLastSpeedup;
 
 	public EnemyGroup(PVector position, PVector size, PVector velocity, int numX, int numY) {
 		this.position = position;
@@ -23,6 +25,17 @@ class EnemyGroup {
 	public void update(float dt) {
 		handleMovement(dt);
 		handleShooting(dt);
+
+		// TODO: This should probably be somewhere else.
+		if (!hasSpawnedNextWave && position.y >= WAVE_NEXT_Y_LEVEL) {
+			waveManager.nextWave();
+			hasSpawnedNextWave = true;
+		}
+
+		if (killsSinceLastSpeedup >= ENEMY_FORMATION_SPEEDUP_KILLS) {
+			killsSinceLastSpeedup -= ENEMY_FORMATION_SPEEDUP_KILLS;
+			velocity.mult(ENEMY_FORMATION_SPEEDUP);
+		}
 	}
 
 	public void onEnemyDead(Enemy enemy) {
@@ -35,6 +48,7 @@ class EnemyGroup {
 		}
 
 		recalculateBounds();
+		killsSinceLastSpeedup++;
 	}
 
 	private void handleMovement(float dt) {
