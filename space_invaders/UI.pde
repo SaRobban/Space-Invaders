@@ -11,6 +11,10 @@ class UserInterface{
 	float timeSinceDeath = 0.0;
 	boolean newHiScore = true;
 
+	Sprite healthIcon = new Sprite("Player");
+	PVector healthIconPos = new PVector();
+	PVector healthIconSize = new PVector(30, 30);
+
 	UserInterface(){
 		fontLarge = loadFont("LargeText-24.vlw");
 		fontSmall = loadFont("SmallText-18.vlw");
@@ -64,7 +68,8 @@ class UserInterface{
 		}
 
 		for(int i = 0; i < player.health; i++){
-			text("-", 450 + (i*50), 50);
+			healthIconPos.set(450 + i*50, 50);
+			healthIcon.draw(healthIconPos, healthIconSize);
 		}
 	}
 
