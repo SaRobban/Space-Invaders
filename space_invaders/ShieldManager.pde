@@ -5,7 +5,7 @@ class ShieldManager{
 		shields = new Shield[4];
 		int numberOfShields = 4;
 		int step =(int)(width / (numberOfShields +1));
-		int bredd = 100;
+		int bredd = 50;
 
 		shields[0] = new Shield(new PVector(step   - bredd *0.5,600), bredd);
 		shields[1] = new Shield(new PVector(step*2 - bredd *0.5,600), bredd);
