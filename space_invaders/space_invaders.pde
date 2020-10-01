@@ -97,8 +97,8 @@ void draw() {
 	}
 
 	// Apply VHS filter.
-	//vhsShader.set("iTime", clock.time());
-	//filter(vhsShader);
+	vhsShader.set("iTime", clock.time());
+	filter(vhsShader);
 }
 
 void keyPressed() { input.keyPressed(); }
