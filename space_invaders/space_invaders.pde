@@ -90,10 +90,7 @@ void draw() {
 	}
 
 	if (gameState == State.PAUSED) {
-		// TODO: Move this to UI.
-		textAlign(CENTER, CENTER);
-		textSize(42);
-		text("PAUSED", width / 2, height / 2);
+		ui.drawPaused();
 	}
 
 	// Apply VHS filter.

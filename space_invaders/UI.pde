@@ -108,6 +108,12 @@ class UserInterface{
 		}
 	}
 
+	void drawPaused() {
+		textAlign(CENTER, CENTER);
+		textSize(42);
+		text("PAUSED", width / 2, height / 2);
+	}
+
 	void drawCredits(){
 		//TODO: This
 		// Set the stroke color by hue.
