@@ -22,6 +22,7 @@ class Enemy extends Entity{
 
 	public void die() {
 		enemyManager.onEnemyDead(this);
+		sounds.invaderKilled.play();
 	}
 
 	public void shoot() {

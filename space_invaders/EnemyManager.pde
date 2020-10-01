@@ -80,6 +80,8 @@ class EnemyManager{
 
 			addEnemyToList(new UFO(new PVector(point, 150), new PVector(randomDir, 0), ENEMY_SIZE.copy(), UFO_SPEED));
 			killsSinceLastUFO = 0;
+
+			sounds.ufo.play();
 		}
 
 

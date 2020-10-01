@@ -1,5 +1,7 @@
 // Jonatan, Robert
 
+import processing.sound.*;
+
 enum State { MENU, PLAYING, PAUSED, GAME_OVER }
 
 Clock clock = new Clock();
@@ -8,11 +10,13 @@ BulletManager bulletManager = new BulletManager();
 EnemyManager enemyManager = new EnemyManager();
 WaveManager waveManager = new WaveManager();
 VFXManager vFXManager = new VFXManager();
+ShieldManager shieldManager = new ShieldManager();
+Sounds sounds;
 UserInterface ui;
-ShieldManager shieldManager;
 Player player;
 
 PShader vhsShader;
+Sound sound;
 
 // State
 State gameState;
@@ -25,6 +29,11 @@ void setup() {
 
 	vhsShader = loadShader("vhs.glsl");
 	vhsShader.set("iResolution", width, height, 1.0f);
+
+	sound = new Sound(this);
+	sound.volume(0.5f);
+	sounds = new Sounds(this);
+	sounds.music.play();
 
 	loadHighScore();
 	ui = new UserInterface();
@@ -90,10 +99,7 @@ void draw() {
 	}
 
 	if (gameState == State.PAUSED) {
-		// TODO: Move this to UI.
-		textAlign(CENTER, CENTER);
-		textSize(42);
-		text("PAUSED", width / 2, height / 2);
+		ui.drawPaused();
 	}
 
 	// Apply VHS filter.

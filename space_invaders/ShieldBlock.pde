@@ -1,16 +1,17 @@
 // Robert
 
 class Shield extends Entity{
-	int length;
+	int lengthX, lengthY;
 	DestructiblePixel[][] pixs;
 
-	Shield(PVector pos, int size){
-		super(pos, new PVector(size, size));
-		this.length = size;
-		pixs = new DestructiblePixel[size][size];
+	Shield(PVector pos, int sizeX, int sizeY){
+		super(pos, new PVector(sizeX, sizeY));
+		this.lengthX = sizeX;
+		this.lengthY = sizeY;
+		pixs = new DestructiblePixel[sizeX][sizeY];
 
-		for(int x = 0; x < length -1; x++){
-			for(int y = 0; y < length -1; y++){
+		for(int x = 0; x < lengthX -1; x++){
+			for(int y = 0; y < lengthY -1; y++){
 				pixs[x][y] = new DestructiblePixel(PVector.add(pos, new PVector(x, y)));
 			}
 		}
@@ -49,8 +50,8 @@ class Shield extends Entity{
 
 		//TODO: Extra checkup to prevent frame overshoot in pixel collision
 		boolean collided = false;
-		for(int x = 0; x < length -1; x++){
-			for(int y = 0; y < length -1; y++){
+		for(int x = 0; x < lengthX -1; x++){
+			for(int y = 0; y < lengthY -1; y++){
 				if(pixs[x][y].active){
 					if(otherX == pixs[x][y].position.x && otherY == pixs[x][y].position.y){
 						makeHole(otherPos);
@@ -76,14 +77,14 @@ class Shield extends Entity{
 		if(minX < 0)
 			minX = 0;
 
-		if(maxX >= length)
-			maxX = length-1;
+		if(maxX >= lengthX)
+			maxX = lengthX-1;
 
 		if(minY < 0)
 			minY = 0;
 
-		if(maxY >= length)
-			maxY = length-1;
+		if(maxY >= lengthY)
+			maxY = lengthY-1;
 
 		//print("minX= " + minX + "  minY= " + minY+ "  maxX= " + maxX + "  maxY= " + maxY + "\n");
 
@@ -102,8 +103,8 @@ class Shield extends Entity{
 
 	@Override
 	public void draw(){
-		for(int x = 0; x < length -1; x++){
-			for(int y = 0; y < length -1; y++){
+		for(int x = 0; x < lengthX -1; x++){
+			for(int y = 0; y < lengthY -1; y++){
 				pixs[x][y].draw();
 			}
 		}
