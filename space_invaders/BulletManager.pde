@@ -95,7 +95,7 @@ class BulletManager{
 			}
 
 			// Shield collision.
-			if (shield.colliderTest(bullet.position)) {
+			if (shieldManager.colliderTest(bullet.position)) {
 				removeThisBullet(i);
 				i--;
 				continue;
