@@ -79,8 +79,8 @@ void draw() {
 	if(gameState == State.MENU){
 		ui.drawTitle();
 	}else if (gameState == State.PLAYING || gameState == State.GAME_OVER || gameState == State.PAUSED) {
-		bulletManager.draw();
 		shieldManager.draw();
+		bulletManager.draw();
 		enemyManager.draw();
 		player.draw();
 		vFXManager.draw();
