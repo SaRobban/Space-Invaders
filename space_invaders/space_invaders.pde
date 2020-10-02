@@ -48,7 +48,6 @@ void update() {
 		if(input.anyKeyDown){
 			startGame();
 		}
-
 	}else if (gameState == State.PLAYING || gameState == State.GAME_OVER) {
 		player.update(deltaTime);
 		enemyManager.update(deltaTime);

@@ -57,6 +57,7 @@ class EnemyGroup {
 		float newX = position.x + velocity.x * dt;
 		float newY = position.y + velocity.y * dt;
 
+		// Wall bounce
 		if (newX <= ENEMY_FORMATION_WALL_PADDING) {
 			newX = ENEMY_FORMATION_WALL_PADDING;
 			velocity.x = -velocity.x;
@@ -121,6 +122,7 @@ class EnemyGroup {
 	private void shoot() {
 		if (enemyCount <= 0) return;
 
+		// Make the lowest enemy in a random column shoot.
 		// TODO: Bad random loop, make better.
 		random_loop:
 		while (true) {

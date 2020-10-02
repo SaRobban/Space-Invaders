@@ -5,6 +5,7 @@ class Clock {
 	private int time;
 	private float deltaTime;
 
+	// Ticks the clock and conveniently returns the delta time since the last call.
 	public float tick() {
 		int currentTime = millis();
 		deltaTime = (currentTime - time) / 1000f;

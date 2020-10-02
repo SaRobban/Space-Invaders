@@ -3,8 +3,6 @@
 class Entity {
 	public PVector position;
 	public PVector direction;
-
-	// Width and height of the entity.
 	public PVector size;
 
 	public Entity(float x, float y, float width, float height) {

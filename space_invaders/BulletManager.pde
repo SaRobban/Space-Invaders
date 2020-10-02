@@ -74,7 +74,7 @@ class BulletManager{
 		for (int i = 0; i < bulletsList.size(); i++) {
 			Bullet bullet = bulletsList.get(i);
 
-			// Player collision.
+			// Player collision
 			if (bullet.faction != Faction.PLAYER && !player.dead && player.isCollidingWith(bullet)) {
 				removeThisBullet(i);
 				player.getShot();
@@ -82,10 +82,11 @@ class BulletManager{
 				continue;
 			}
 
-			// Enemy collision.
+			// Enemy collision
 			if (bullet.faction != Faction.ENEMY) {
 				for (int j = 0; j < enemyManager.enemyList.size(); j++) {
 					Enemy enemy = enemyManager.enemyList.get(j);
+
 					if (enemy.isCollidingWith(bullet)) {
 						removeThisBullet(i);
 						enemy.getShot();
@@ -96,18 +97,19 @@ class BulletManager{
 				}
 			}
 
-			// Shield collision.
+			// Shield collision
 			if (shieldManager.colliderTest(bullet.position)) {
 				removeThisBullet(i);
 				i--;
 				continue;
 			}
 
-			// Bullet bullet collision
+			// Bullet, bullet collision
 			for (int j = 0; j < bulletsList.size(); j++) {
 				if (i == j) continue;
 				Bullet bullet2 = bulletsList.get(j);
 				if (bullet.faction == bullet2.faction) continue;
+
 				if (bullet.isCollidingWith(bullet2)) {
 					removeThisBullet(i);
 					if (j >= i)

@@ -49,18 +49,18 @@ class Player extends Entity {
 		dead = false;
 	}
 
-	private void handleMovement(float dt) {
+	private void handleMovement(float deltaTime) {
 		float move = 0;
 		if (input.left) move -= 1;
 		if (input.right) move += 1;
 
-		position.x += move * speed * dt;
+		position.x += move * speed * deltaTime;
 		position.x = constrain(position.x, 0, width - size.x - 1);
 	}
 
-	private void handleShooting(float dt) {
-		fireDelay -= dt;
-		autoFireDelay -= dt;
+	private void handleShooting(float deltaTime) {
+		fireDelay -= deltaTime;
+		autoFireDelay -= deltaTime;
 		if (input.fireDown) {
 			if (fireDelay <= 0) {
 				autoFireDelay = PLAYER_AUTO_FIRE_DELAY;
