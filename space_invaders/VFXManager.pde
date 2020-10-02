@@ -16,7 +16,7 @@ class VFXManager{
 	}
 
 	public void update(float deltaTime){
-		for(int i = vfxList.size() - 1; i > 0; i--){
+		for(int i = vfxList.size() - 1; i >= 0; i--){
 			if(vfxList.get(i).isAlive()){
 				vfxList.get(i).update(deltaTime);
 			}else{
