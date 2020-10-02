@@ -54,7 +54,7 @@ class UserInterface{
 
 		float sine = sin(millis() * 0.0005);
 		float cosi = cos(millis() * 0.0005);
-		icon.draw(new PVector(width *0.5 - 12 - sine * 300, 300 - cosi * 100), new PVector(24,24));
+		icon.draw(new PVector(width *0.5 - 12 - sine * 300, 320 - cosi * 100), new PVector(24,24));
 	}
 
 	void drawHUD(){
@@ -139,7 +139,7 @@ class UserInterface{
 		text("Noize by:", width * 0.5, screenY + row * 4);
 		textFont(fontSmall, 11);
 		text("https://www.classicgaming.cc/classics/space-invaders/sounds", width * 0.5, screenY + row * 5);
-		text("https://www.shadertoy.com/user/FMS_Cat", width * 0.5, screenY + row * 6);
+		text("https://www.shadertoy.com/user/FMS_Cat", width * 0.5, screenY + row * 6 - 5);
 	}
 
 	color hueColorCycle(float hue) {
