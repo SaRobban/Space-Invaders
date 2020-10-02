@@ -125,8 +125,7 @@ class UserInterface{
 	}
 
 	void drawCredits(){
-		//fill(hueColorCycle(millis() * 0.0001));
-		fill(180);
+		fill(hueColorCycle(millis() * 0.0001));
 		float screenY = height * 0.8;
 		float row = 21;
 		text("Made by:", width * 0.5, screenY);
@@ -143,11 +142,10 @@ class UserInterface{
 		text("https://www.shadertoy.com/user/FMS_Cat", width * 0.5, screenY + row * 6);
 	}
 
-
 	color hueColorCycle(float hue) {
 		colorMode(HSB, 1);
 		color col = color(hue % 1, 1, 1);
-		colorMode(RGB);
+		colorMode(RGB, 255);
 		return col;
 	}
 
