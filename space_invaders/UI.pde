@@ -17,10 +17,13 @@ class UserInterface{
 	PVector healthIconPos = new PVector();
 	PVector healthIconSize = new PVector(30, 30);
 
+	Sprite icon;
+
 	UserInterface(){
 		fontLarge = loadFont("LargeText-24.vlw");
 		fontSmall = loadFont("SmallText-18.vlw");
 		fontTitle = loadFont("Title-72.vlw");
+		icon = new Sprite("Enemy");
 	}
 
 	void drawTitle(){
@@ -29,38 +32,29 @@ class UserInterface{
 		//Title text
 		fill(colTextDefault);
 		textAlign(CENTER, BOTTOM);
-		textFont(fontTitle, 72);
+		textFont(fontTitle, 84);
 		text("SPÄJS INVÄDORS", width * 0.5, 355);
 		stroke(colTextDefault);
 		strokeWeight(4);
-		line(0, 342, 120, 342);
-		line(150, 342, 190, 342);
-		line(220, 342, width, 342);
+		line(0, 340, 93, 340);
+		line(120, 340, 175, 340);
+		line(203, 340, width, 340);
 
 		//Sub text
-		textFont(fontLarge, 24);
+		textFont(fontLarge, 18);
 		float animV = sin(millis() * 0.01) +1;
 		color animHiS = lerpColor(colTextHiScore, color (255,255,255,255), animV * 0.5);
 		fill(animHiS);
-		text("PRESS ANY KEY", width * 0.5, height * 0.5);
 		textAlign(CENTER, TOP);
+		text("PRESS ANY KEY", width * 0.5, height * 0.45);
 		textFont(fontSmall, 18);
-		text("Credz : 3", width * 0.5, height * 0.52);
+		text("Credits : 3", width * 0.5, height * 0.45 + 22);
 
-		//Creds //scrolla?
-		//textAlign(CENTER,BOTTOM);
-		text("Made by:", width * 0.5, height * 0.8);
-		textAlign(RIGHT,TOP);
-		text("\n\nDeep thoughts:", width * 0.5, height * 0.8);
-		text("\n\n\nCoffee drinking:", width * 0.5, height * 0.8);
-		textAlign(LEFT,TOP);
-		text("\n\nJonatan Johansson", width * 0.5, height * 0.8);
-		text("\n\n\nRobert Sandh", width * 0.5, height * 0.8);
-		textAlign(CENTER);
-		text("\n \n \n \n" + "Noize by:", width * 0.5, height * 0.85);
-		textFont(fontSmall, 9);
-		text("\n \n \n \n \n" + "https://www.classicgaming.cc/classics/space-invaders/sounds", width * 0.5, height * 0.9);
-		text("\n \n \n \n \n \n" + "https://www.shadertoy.com/user/FMS_Cat", width * 0.5, height * 0.9);
+		drawCredits();
+
+		float sine = sin(millis() * 0.0005);
+		float cosi = cos(millis() * 0.0005);
+		icon.draw(new PVector(width *0.5 - 12 - sine * 300, 300 - cosi * 100), new PVector(24,24));
 	}
 
 	void drawHUD(){
@@ -93,7 +87,7 @@ class UserInterface{
 
 	public void drawGameOver() {
 		timeSinceDeath += clock.deltaTime();
-		color fade = lerpColor(color(0,0,0,0), colMainBG, timeSinceDeath * 0.1);
+		color fade = lerpColor(color(0,0,0,0), colMainBG, timeSinceDeath * 0.5);
 
 
 		fill(fade);
@@ -131,20 +125,32 @@ class UserInterface{
 	}
 
 	void drawCredits(){
-		//TODO: This
-		// Set the stroke color by hue.
-	/*
-
-	*/
+		//fill(hueColorCycle(millis() * 0.0001));
+		fill(180);
+		float screenY = height * 0.8;
+		float row = 21;
+		text("Made by:", width * 0.5, screenY);
+		textAlign(RIGHT,TOP);
+		text("Deep thoughts:", width * 0.5, screenY + row);
+		text("Coffee drinking:", width * 0.5, screenY + row * 2);
+		textAlign(LEFT,TOP);
+		text("Jonatan Johansson", width * 0.5, screenY + row);
+		text("Robert Sandh", width * 0.5, screenY + row * 2);
+		textAlign(CENTER,TOP);
+		text("Noize by:", width * 0.5, screenY + row * 4);
+		textFont(fontSmall, 11);
+		text("https://www.classicgaming.cc/classics/space-invaders/sounds", width * 0.5, screenY + row * 5);
+		text("https://www.shadertoy.com/user/FMS_Cat", width * 0.5, screenY + row * 6);
 	}
 
-/*
-	color hueColor(float hue) {
+
+	color hueColorCycle(float hue) {
 		colorMode(HSB, 1);
-		stroke(hue % 1, 1, 1);
+		color col = color(hue % 1, 1, 1);
 		colorMode(RGB);
+		return col;
 	}
-*/
+
 	void reset(){
 		timeSinceDeath = 0;
 		newHiScore = false;

@@ -55,7 +55,7 @@ class VFX extends Entity{
 		colAlphaB -= 255 * mulScale * mulScale * deltaTime;
 
 		yellow = color (255, 255 - colAlphaA * 0.5,128 - colAlphaA, colAlphaA);
-		gray = color (64,64,64, 225);// colAlphaB);
+		gray = color (255,250,240, 225);
 
 		if(size >= maxSize){
 			alive = false;
@@ -66,11 +66,8 @@ class VFX extends Entity{
 	public void draw(){
 		noStroke();
 
-
 		pushMatrix();
 		translate(position.x, position.y);
-		//rotate(frameCount / -100.0);
-
 
 		fill(gray);
 		star(randPosA.x, randPosA.y, size, size, 12);
@@ -78,7 +75,6 @@ class VFX extends Entity{
 		star(randPosC.x, randPosC.y, size * 0.5, size * 0.5f, 12);
 		star(randPosD.x, randPosD.y, size * 0.25, size * 0.25f, 12);
 		star(randPosE.x, randPosE.y, size * 0.25, size * 0.25f, 12);
-
 
 		fill(yellow);
 		star(0, 0, size * 0.5, size * 1.5f, 5);
