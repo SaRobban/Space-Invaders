@@ -19,7 +19,6 @@ class ShieldManager{
 		shields[3] = new Shield(new PVector(step*4 - bredd *0.5,630), bredd, hojd);
 	}
 
-
 	public boolean colliderTest(PVector otherPos){
 		boolean hit = false;
 		for(int i = 0; i < shields.length; i++){
@@ -35,7 +34,6 @@ class ShieldManager{
 		}
 		windows();
 	}
-
 
 	void windows(){
 		for(int i = 0; i < shields.length; i++){

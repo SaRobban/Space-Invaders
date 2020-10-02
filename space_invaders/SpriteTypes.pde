@@ -39,9 +39,11 @@ class Sprite{
 		}
 	}
 
+
 	void drawEnemy(){
+
 		ellipseMode(CORNER);
-		float animOne;// = sin(localPosition.y * 2) * 3;
+		float animOne;
 		float animTwo;
 
 		pushMatrix();
@@ -59,7 +61,8 @@ class Sprite{
 		line(localSize.x *0.7, localSize.y *0.7, localSize.x *0.8 + animTwo, localSize.y *0.8);
 		line(localSize.x *0.5, localSize.y *0.7, localSize.x *0.5 - animTwo, localSize.y *0.8);
 		line(localSize.x *0.3, localSize.y *0.7, localSize.x *0.2 + animTwo, localSize.y *0.8);
-		//arms
+
+		//arms link root
 		strokeWeight(4);
 		stroke(colEnemy);
 		line(localSize.x *0.7, localSize.y *0.7, localSize.x *0.8 + animTwo, localSize.y *0.8);
@@ -74,7 +77,8 @@ class Sprite{
 		line(localSize.x *0.8 + animOne, localSize.y *0.8,localSize.x *0.9 + animTwo, localSize.y *0.9);
 		line(localSize.x *0.5 - animOne, localSize.y *0.8, localSize.x *0.5 - animTwo, localSize.y *0.9);
 		line(localSize.x *0.2 + animOne, localSize.y *0.8, localSize.x *0.1 + animTwo, localSize.y *0.9);
-		//arms
+
+		//arms link 1
 		strokeWeight(3);
 		stroke(colEnemy);
 		line(localSize.x *0.8 + animOne, localSize.y *0.8,localSize.x *0.9 + animTwo, localSize.y *0.9);
@@ -89,7 +93,8 @@ class Sprite{
 		line(localSize.x *0.9 + animOne, localSize.y *0.9,localSize.x + animTwo, localSize.y);
 		line(localSize.x *0.5 - animOne, localSize.y *0.9, localSize.x *0.5 - animTwo, localSize.y);
 		line(localSize.x *0.1 + animOne, localSize.y *0.9, animTwo, localSize.y);
-		//arms
+
+		//arms link 2
 		strokeWeight(2);
 		stroke(colEnemy);
 		line(localSize.x *0.9 + animOne, localSize.y *0.9,localSize.x + animTwo, localSize.y);
@@ -108,8 +113,6 @@ class Sprite{
 		ellipse(0, 0, localSize.y *0.15, localSize.x * 0.35);
 		popMatrix();
 		ellipse(localSize.x * 0.35, localSize.y * 0.15, localSize.x * 0.15, localSize.y *0.1);
-
-
 
 		//Eyes
 		strokeWeight(5);
@@ -157,10 +160,12 @@ class Sprite{
 			localSize.x *0.2	, localSize.y *0.4
 		);
 		line(localSize.x*0.2, localSize.y * 0.2, localSize.x *0.8 , localSize.y * 0.2);
+		
 		popMatrix();
 	}
 
 	void drawBullet(){
+
 		noStroke();
 		fill(colFrendlyBullet);
 
@@ -172,11 +177,13 @@ class Sprite{
 		triangle(-localSize.x, 0, localSize.x, 0, 0, localSize.y * 4);
 		fill(color(255,255,255,255));
 		ellipse(0, 0, localSize.x -2, localSize.y -2);
+		
 		popMatrix();
 
 	}
 
 	void drawEnemyBullet(PVector pos, PVector size){
+		
 		localPosition = pos;
 		localSize = size;
 
@@ -205,38 +212,34 @@ class Sprite{
 	}
 
 	void drawUFO(){
-		noStroke();
 
+		noStroke();
 		ellipseMode(CORNER);
+		
 		pushMatrix();
 		translate(localPosition.x, localPosition.y);
 		fill(color(128,0,128,255));
 		ellipse(0, localSize.y * 0.25, localSize.x, localSize.y * 0.5);
 		ellipse(localSize.x * 0.25, 0, localSize.y  * 0.5, localSize.y * 0.5);
 		ellipse(localSize.x * 0.25, localSize.y * 0.5, localSize.y  * 0.5, localSize.y * 0.5);
+		
 		fill(color(255,0,255,255));
 		ellipse(1, localSize.y * 0.25 +1, localSize.x -2, localSize.y * 0.5 -2);
 		ellipse(localSize.x * 0.25 +1, 1, localSize.y  * 0.5 -2, localSize.y * 0.5 -2);
 		ellipse(localSize.x * 0.25 +1, localSize.y * 0.5 +1, localSize.y  * 0.5 -2, localSize.y * 0.5 -2);
 
-
-
 		rotate(PI *0.1);
 		fill(color(255,255,255,128));
 		ellipse(localSize.x * 0.35, localSize.y * -0.1, localSize.y  * 0.3, localSize.y * 0.25);
 		ellipse(localSize.x * 0.2, localSize.y * 0.25, localSize.x * 0.4, localSize.y * 0.2);
-		//ellipse(localSize.x * 0.25, 0, localSize.y  * 0.5, localSize.y);
 
 		popMatrix();
-
-		fill(255);
 	}
 
 	void drawPixel(){
+
 		noStroke();
 		fill(colPlayer);
 		rect(localPosition.x, localPosition.y, 1, 1);
 	}
-
-
 }

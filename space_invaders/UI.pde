@@ -51,7 +51,7 @@ class UserInterface{
 		//textAlign(CENTER,BOTTOM);
 		text("Made by:", width * 0.5, height * 0.8);
 		textAlign(RIGHT,TOP);
-		text("\n\nDeep thought:", width * 0.5, height * 0.8);
+		text("\n\nDeep thoughts:", width * 0.5, height * 0.8);
 		text("\n\n\nCoffee drinking:", width * 0.5, height * 0.8);
 		textAlign(LEFT,TOP);
 		text("\n\nJonatan Johansson", width * 0.5, height * 0.8);
@@ -61,8 +61,6 @@ class UserInterface{
 		textFont(fontSmall, 9);
 		text("\n \n \n \n \n" + "https://www.classicgaming.cc/classics/space-invaders/sounds", width * 0.5, height * 0.9);
 		text("\n \n \n \n \n \n" + "https://www.shadertoy.com/user/FMS_Cat", width * 0.5, height * 0.9);
-		
-
 	}
 
 	void drawHUD(){
@@ -147,7 +145,6 @@ class UserInterface{
 		colorMode(RGB);
 	}
 */
-
 	void reset(){
 		timeSinceDeath = 0;
 		newHiScore = false;
