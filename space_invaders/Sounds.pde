@@ -25,9 +25,9 @@ class Sounds {
 
 		music = new SoundFile(applet, "spaceinvaders1.wav");
 
-		shoot.amp(0.3f);
-		invaderKilled.amp(0.3f);
-		explosion.amp(0.3f);
-		ufo.amp(0.3f);
+		shoot.amp(0.25f);
+		invaderKilled.amp(0.25f);
+		explosion.amp(0.25f);
+		ufo.amp(0.25f);
 	}
 }
