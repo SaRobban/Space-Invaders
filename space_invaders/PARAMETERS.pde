@@ -28,5 +28,5 @@ final float ENEMY_FORMATION_SPEEDUP = 1.1f;
 final int ENEMY_FORMATION_SPEEDUP_KILLS = 10;
 
 // Waves
-final float WAVE_ENEMY_SPEEDUP = 1.1f;
+final float WAVE_ENEMY_SPEEDUP = 1.2f;
 final float WAVE_NEXT_Y_LEVEL = 400;

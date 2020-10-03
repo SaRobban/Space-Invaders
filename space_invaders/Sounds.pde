@@ -16,7 +16,6 @@ class Sounds {
 
 	public Sounds(PApplet applet) {
 		sound = new Sound(applet);
-		sound.volume(0.6f);
 
 		shoot = new SoundFile(applet, "shoot.wav");
 		invaderKilled = new SoundFile(applet, "invaderkilled.wav");
