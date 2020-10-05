@@ -15,15 +15,18 @@ class Enemy extends Entity{
 		sprite.draw(position, size);
 	}
 
+
 	public void getShot() {
 		if (gameState != State.GAME_OVER)
 			die();
 	}
 
+
 	public void die() {
 		enemyManager.onEnemyDead(this);
 		sounds.invaderKilled.play();
 	}
+
 
 	public void shoot() {
 		PVector bulletPos = new PVector(

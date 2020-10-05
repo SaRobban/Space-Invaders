@@ -4,12 +4,14 @@ enum Faction {
 	ENEMY, PLAYER
 }
 
+
 class BulletManager{
 	public ArrayList<Bullet> bulletsList;
 
 	public BulletManager(){
 		bulletsList = new ArrayList<Bullet>();
 	}
+
 
 	public ArrayList getListOfBullets(){
 		return (bulletsList);
@@ -31,6 +33,7 @@ class BulletManager{
 	public void removeThisBullet(Bullet b) {
 		removeThisBullet(bulletsList.indexOf(b));
 	}
+
 
 	public void removeThisBullet(int bulletIndex) {
 		vFXManager.createABoom(bulletsList.get(bulletIndex).position);
@@ -68,6 +71,7 @@ class BulletManager{
 			bulletsList.get(i).draw();
 		}
 	}
+
 
 	public void checkCollision() {
 		bullet_loop:
@@ -123,6 +127,7 @@ class BulletManager{
 			}
 		}
 	}
+
 
 	public void reset() {
 		bulletsList.clear();

@@ -14,7 +14,7 @@ class Sprite{
 	color colPlayer = 			color(0, 255, 0, 255);
 	color colFrendlyBullet = 	color(0, 255, 200, 255);
 	color colEnemyBullet =	 	color(255, 64, 0, 255);
-	color colUFO = 				color(0, 0, 255, 255);
+	color colUFO = 				color(255, 0, 255, 255);
 
 	Sprite(String type){
 		this.type = type;
@@ -41,18 +41,17 @@ class Sprite{
 
 
 	void drawEnemy(){
-
-		ellipseMode(CORNER);
-		float animOne;
-		float animTwo;
-
 		pushMatrix();
 		translate(localPosition.x, localPosition.y);
+
+		float animOne;
+		float animTwo;
+		ellipseMode(CORNER);
+		
 		//Head BG
 		fill(color(200,0,0,255));
 		noStroke();
 		ellipse(0, 0, localSize.x, localSize.y *0.75);
-
 
 		//arms BG
 		strokeWeight(6);
@@ -127,8 +126,8 @@ class Sprite{
 		popMatrix();
 	}
 
-	void drawPlayer(){
 
+	void drawPlayer(){
 		pushMatrix();
 		translate(localPosition.x, localPosition.y);
 		//Track low
@@ -140,6 +139,7 @@ class Sprite{
 		line(localSize.x *0.05, localSize.y * 0.74, localSize.x * 0.22, localSize.y * 0.96);
 		line(localSize.x *0.95, localSize.y * 0.74, localSize.x * 0.78, localSize.y * 0.96);
 
+		//wheels
 		noStroke();
 		circle(0, localSize.y * 0.6	, localSize.x * 0.2);
 		circle(localSize.x - localSize.x * 0.2, localSize.y * 0.6, localSize.x * 0.2);
@@ -150,9 +150,9 @@ class Sprite{
 		quad(0, localSize.y *0.5, localSize.x, localSize.y *0.5, localSize.x, localSize.y *0.4, 0, localSize.y *0.4);
 		quad(localSize.x *0.15, localSize.y *0.2, localSize.x *0.85, localSize.y *0.2, localSize.x, localSize.y *0.4, 0, localSize.y *0.4);
 
+		//Tower
 		stroke(0);
 		strokeWeight(2);
-		//Tower
 		quad(
 			localSize.x *0.3	, 0,
 			localSize.x	*0.7	, 0,
@@ -164,14 +164,13 @@ class Sprite{
 		popMatrix();
 	}
 
+
 	void drawBullet(){
-
-		noStroke();
-		fill(colFrendlyBullet);
-
 		pushMatrix();
 		translate(localPosition.x, localPosition.y);
 
+		noStroke();
+		fill(colFrendlyBullet);
 		ellipseMode(CENTER);
 		ellipse(0,0, localSize.x, localSize.y);
 		triangle(-localSize.x, 0, localSize.x, 0, 0, localSize.y * 4);
@@ -181,6 +180,7 @@ class Sprite{
 		popMatrix();
 
 	}
+
 
 	void drawEnemyBullet(PVector pos, PVector size){
 		
@@ -211,19 +211,19 @@ class Sprite{
 		popMatrix();
 	}
 
+
 	void drawUFO(){
+		pushMatrix();
+		translate(localPosition.x, localPosition.y);
 
 		noStroke();
 		ellipseMode(CORNER);
-		
-		pushMatrix();
-		translate(localPosition.x, localPosition.y);
 		fill(color(128,0,128,255));
 		ellipse(0, localSize.y * 0.25, localSize.x, localSize.y * 0.5);
 		ellipse(localSize.x * 0.25, 0, localSize.y  * 0.5, localSize.y * 0.5);
 		ellipse(localSize.x * 0.25, localSize.y * 0.5, localSize.y  * 0.5, localSize.y * 0.5);
 		
-		fill(color(255,0,255,255));
+		fill(colUFO);
 		ellipse(1, localSize.y * 0.25 +1, localSize.x -2, localSize.y * 0.5 -2);
 		ellipse(localSize.x * 0.25 +1, 1, localSize.y  * 0.5 -2, localSize.y * 0.5 -2);
 		ellipse(localSize.x * 0.25 +1, localSize.y * 0.5 +1, localSize.y  * 0.5 -2, localSize.y * 0.5 -2);
@@ -236,8 +236,8 @@ class Sprite{
 		popMatrix();
 	}
 
-	void drawPixel(){
 
+	void drawPixel(){
 		noStroke();
 		fill(colPlayer);
 		rect(localPosition.x, localPosition.y, 1, 1);

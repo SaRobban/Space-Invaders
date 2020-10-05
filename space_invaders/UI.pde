@@ -50,12 +50,15 @@ class UserInterface{
 		textFont(fontSmall, 18);
 		text("Credits : 3", width * 0.5, height * 0.45 + 22);
 
+		//Credits
 		drawCredits();
 
+		//Spaceinvador icon
 		float sine = sin(millis() * 0.0005);
 		float cosi = cos(millis() * 0.0005);
 		icon.draw(new PVector(width *0.5 - 12 - sine * 300, 320 - cosi * 100), new PVector(24,24));
 	}
+
 
 	void drawHUD(){
 		newHiScore = false;
@@ -74,8 +77,6 @@ class UserInterface{
 			color animHiS = lerpColor(colTextHiScore, color (255,255,255,255), animV * 0.5);
 			fill(animHiS);
 			textFont(fontLarge, 24);
-
-
 			text("---+NewHiScore : " + score + " +---", width * 0.5, 20);
 		}
 
@@ -85,16 +86,15 @@ class UserInterface{
 		}
 	}
 
+
 	public void drawGameOver() {
 		timeSinceDeath += clock.deltaTime();
 		color fade = lerpColor(color(0,0,0,0), colMainBG, timeSinceDeath * 0.5);
-
 
 		fill(fade);
 		rect(0,0,width,height);
 
 		float yOffset = -50;
-
 		fill(colTextDefault);
 		textAlign(CENTER, CENTER);
 		textFont(fontLarge, 24);
@@ -118,11 +118,13 @@ class UserInterface{
 		}
 	}
 
+
 	void drawPaused() {
 		textAlign(CENTER, CENTER);
 		textSize(42);
 		text("PAUSED", width / 2, height / 2);
 	}
+
 
 	void drawCredits(){
 		fill(hueColorCycle(millis() * 0.0001));
@@ -142,12 +144,14 @@ class UserInterface{
 		text("https://www.shadertoy.com/user/FMS_Cat", width * 0.5, screenY + row * 6 - 5);
 	}
 
+
 	color hueColorCycle(float hue) {
 		colorMode(HSB, 1);
 		color col = color(hue % 1, 1, 1);
 		colorMode(RGB, 255);
 		return col;
 	}
+
 
 	void reset(){
 		timeSinceDeath = 0;

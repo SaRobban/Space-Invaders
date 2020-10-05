@@ -1,9 +1,9 @@
 // Robert
 
 class VFX extends Entity{
-	boolean alive = true;
-	float maxSize;
-	float size = 0;
+	boolean isAlive = true;
+	float maxGrowth;
+	float growth = 0;
 	float mulScale = 0.0;
 
 	color yellow = color(255, 255, 0, 255);
@@ -19,69 +19,70 @@ class VFX extends Entity{
 
 	public VFX(PVector pos, int size, float life){
 		super(pos, new PVector(0,1), new PVector(size, size));
-		this.maxSize = size;
+		this.maxGrowth = size;
 		this.mulScale = 1 / life;
-		this.alive = true;
-		randomPos(maxSize *0.5);
+		this.isAlive = true;
+		randomPos(maxGrowth *0.5);
 	}
+
 
 	public VFX(float posX, float posY, int size, float life){
 		super(new PVector(posX, posY), new PVector(0,1), new PVector(size, size));
-		this.maxSize = size;
+		this.maxGrowth = size;
 		this.mulScale = 1 / life;
-		randomPos(maxSize *0.5);
+		randomPos(maxGrowth *0.5);
 	}
 
 
 	private void randomPos(float value){
 
-		float off = size * 0.5;
+		float off = growth * 0.5;
 		randPosA = new PVector(random(-value, value) -off, random(-value, value) -off);
 		randPosB = new PVector(random(-value, value) -off, random(-value, value) -off);
 		randPosC = new PVector(random(-value, value) -off, random(-value, value) -off);
 		randPosD = new PVector(random(-value, value) -off, random(-value, value) -off);
 		randPosE = new PVector(random(-value, value) -off, random(-value, value) -off);
-
 	}
 
+
 	public boolean isAlive(){
-		return alive;
+		return isAlive;
 	}
 
 	@Override
 	public void update(float deltaTime){
-		size += maxSize * mulScale * mulScale * deltaTime;
+	
+		growth += maxGrowth * mulScale * mulScale * deltaTime;
 		colAlphaA -= 319 * mulScale * deltaTime * 2;
 		colAlphaB -= 255 * mulScale * mulScale * deltaTime;
 
 		yellow = color (255, 255 - colAlphaA * 0.5,128 - colAlphaA, colAlphaA);
 		gray = color (255,250,240, 225);
 
-		if(size >= maxSize){
-			alive = false;
+		if(growth >= maxGrowth){
+			isAlive = false;
 		}
 	}
 
 	@Override
 	public void draw(){
-		noStroke();
-
+		
 		pushMatrix();
 		translate(position.x, position.y);
 
+		noStroke();
 		fill(gray);
-		star(randPosA.x, randPosA.y, size, size, 12);
-		star(randPosB.x, randPosB.y, size * 0.75, size * 0.75f, 12);
-		star(randPosC.x, randPosC.y, size * 0.5, size * 0.5f, 12);
-		star(randPosD.x, randPosD.y, size * 0.25, size * 0.25f, 12);
-		star(randPosE.x, randPosE.y, size * 0.25, size * 0.25f, 12);
+		star(randPosA.x, randPosA.y, growth , 		growth , 			12);
+		star(randPosB.x, randPosB.y, growth * 0.75, growth  * 0.75f, 	12);
+		star(randPosC.x, randPosC.y, growth * 0.5, 	growth  * 0.5f, 	12);
+		star(randPosD.x, randPosD.y, growth * 0.25, growth  * 0.25f, 	12);
+		star(randPosE.x, randPosE.y, growth * 0.25, growth  * 0.25f, 	12);
 
 		fill(yellow);
-		star(0, 0, size * 0.5, size * 1.5f, 5);
+		star(0, 0, growth * 0.5, growth * 1.5f, 5);
 
 		popMatrix();
 	}
-
 
 	//copy from P3 sample
 	void star(float x, float y, float radius1, float radius2, int npoints) {

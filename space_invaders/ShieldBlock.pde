@@ -1,17 +1,17 @@
 // Robert
 
 class Shield extends Entity{
-	int lengthX, lengthY;
+	int pixsLengthX, pixsLengthY;
 	DestructiblePixel[][] pixs;
 
 	Shield(PVector pos, int sizeX, int sizeY){
 		super(pos, new PVector(sizeX, sizeY));
-		this.lengthX = sizeX;
-		this.lengthY = sizeY;
+		this.pixsLengthX = sizeX;
+		this.pixsLengthY = sizeY;
 		pixs = new DestructiblePixel[sizeX][sizeY];
 
-		for(int x = 0; x < lengthX -1; x++){
-			for(int y = 0; y < lengthY -1; y++){
+		for(int x = 0; x < pixsLengthX -1; x++){
+			for(int y = 0; y < pixsLengthY -1; y++){
 				pixs[x][y] = new DestructiblePixel(PVector.add(pos, new PVector(x, y)));
 			}
 		}
@@ -48,10 +48,10 @@ class Shield extends Entity{
 		int otherX = (int)otherPos.x;
 		int otherY = (int)otherPos.y;
 
-		//TODO: Extra checkup to prevent frame overshoot in pixel collision
+		//TODO: Extra checkup to prevent collision overshoot in pixel collision due to frameTime
 		boolean collided = false;
-		for(int x = 0; x < lengthX -1; x++){
-			for(int y = 0; y < lengthY -1; y++){
+		for(int x = 0; x < pixsLengthX -1; x++){
+			for(int y = 0; y < pixsLengthY -1; y++){
 				if(pixs[x][y].active){
 					if(otherX == pixs[x][y].position.x && otherY == pixs[x][y].position.y){
 						makeHole(otherPos);
@@ -65,7 +65,7 @@ class Shield extends Entity{
 
 
 	private void makeHole(PVector otherPos) {
-		PVector localPos = PVector.sub(otherPos, position);// otherPos.copy();
+		PVector localPos = PVector.sub(otherPos, position);
 		int boomSize = 10;
 		int boomSqr = boomSize * boomSize;
 
@@ -77,16 +77,14 @@ class Shield extends Entity{
 		if(minX < 0)
 			minX = 0;
 
-		if(maxX >= lengthX)
-			maxX = lengthX-1;
+		if(maxX >= pixsLengthX)
+			maxX = pixsLengthX-1;
 
 		if(minY < 0)
 			minY = 0;
 
-		if(maxY >= lengthY)
-			maxY = lengthY-1;
-
-		//print("minX= " + minX + "  minY= " + minY+ "  maxX= " + maxX + "  maxY= " + maxY + "\n");
+		if(maxY >= pixsLengthY)
+			maxY = pixsLengthY-1;
 
 		for(int x = minX; x < maxX; x++){
 			for(int y = minY; y < maxY; y++){
@@ -94,17 +92,15 @@ class Shield extends Entity{
 				float sqr = dir.magSq();
 				if(sqr < boomSqr){
 					pixs[x][y].active = false;
-					//print(" BOOOM");
 				}
 			}
 		}
 	}
 
-
 	@Override
 	public void draw(){
-		for(int x = 0; x < lengthX -1; x++){
-			for(int y = 0; y < lengthY -1; y++){
+		for(int x = 0; x < pixsLengthX -1; x++){
+			for(int y = 0; y < pixsLengthY -1; y++){
 				pixs[x][y].draw();
 			}
 		}
@@ -123,10 +119,8 @@ class DestructiblePixel{
 	}
 
 
-
 	public void draw(){
 		if(active)
 			sprite.draw(position, new PVector(1,1));
 	}
-
 }
