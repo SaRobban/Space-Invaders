@@ -9,7 +9,6 @@ class Sounds {
 	public SoundFile invaderKilled;
 	public SoundFile explosion;
 	public SoundFile ufo;
-
 	public SoundFile music;
 
 	public Sound sound;
@@ -17,12 +16,11 @@ class Sounds {
 	public Sounds(PApplet applet) {
 		sound = new Sound(applet);
 
-		shoot = new SoundFile(applet, "shoot.wav");
-		invaderKilled = new SoundFile(applet, "invaderkilled.wav");
-		explosion = new SoundFile(applet, "explosion.wav");
-		ufo = new SoundFile(applet, "ufo_lowpitch.wav");
-
-		music = new SoundFile(applet, "spaceinvaders1.wav");
+		shoot = new SoundFile(applet, "sound/shoot.wav");
+		invaderKilled = new SoundFile(applet, "sound/invaderkilled.wav");
+		explosion = new SoundFile(applet, "sound/explosion.wav");
+		ufo = new SoundFile(applet, "sound/ufo_lowpitch.wav");
+		music = new SoundFile(applet, "sound/spaceinvaders1.wav");
 
 		shoot.amp(0.25f);
 		invaderKilled.amp(0.25f);
