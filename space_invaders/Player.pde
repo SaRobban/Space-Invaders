@@ -35,9 +35,8 @@ class Player extends Entity {
 		if (dead || health <= 0) return;
 
 		health -= 1;
-		if (health == 0) {
+		if (health == 0)
 			die();
-		}
 
 		sounds.explosion.play();
 	}
@@ -61,6 +60,7 @@ class Player extends Entity {
 	private void handleShooting(float deltaTime) {
 		fireDelay -= deltaTime;
 		autoFireDelay -= deltaTime;
+
 		if (input.fireDown) {
 			if (fireDelay <= 0) {
 				autoFireDelay = PLAYER_AUTO_FIRE_DELAY;

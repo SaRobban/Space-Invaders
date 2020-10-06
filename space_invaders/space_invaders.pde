@@ -78,7 +78,7 @@ void draw() {
 
 	if(gameState == State.MENU){
 		ui.drawTitle();
-	}else if (gameState == State.PLAYING || gameState == State.GAME_OVER || gameState == State.PAUSED) {
+	}else if (gameState == State.PLAYING || gameState == State.PAUSED || gameState == State.GAME_OVER) {
 		shieldManager.draw();
 		bulletManager.draw();
 		enemyManager.draw();
@@ -98,9 +98,7 @@ void draw() {
 		ui.drawPaused();
 	}
 
-	// Apply VHS filter.
-	vhsShader.set("iTime", clock.time());
-	filter(vhsShader);
+	applyVHSFilter();
 }
 
 void keyPressed() { input.keyPressed(); }
@@ -165,4 +163,9 @@ void drawBackGround(){
 	line(width * 0.4,700,width * 0.3,height);
 	line(width * 0.6,700,width * 0.7,height);
 	line(width * 0.8,700,width,height);
+}
+
+void applyVHSFilter() {
+	vhsShader.set("iTime", clock.time());
+	filter(vhsShader);
 }

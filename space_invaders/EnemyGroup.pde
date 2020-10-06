@@ -20,7 +20,6 @@ class EnemyGroup {
 		this.numY = numY;
 		enemies = new Enemy[numX][numY];
 		enemyCount = numX * numY;
-
 		shootTimer = ENEMY_SHOOT_DELAY;
 	}
 
@@ -90,12 +89,12 @@ class EnemyGroup {
 	private void recalculateBounds() {
 		if (enemyCount <= 0) return;
 
-		final float INF = 1/0f;
+		final float INFINITY = 1/0f;
 
-		float top = INF;
-		float left = INF;
-		float right = -INF;
-		float bottom = -INF;
+		float top = INFINITY;
+		float left = INFINITY;
+		float right = -INFINITY;
+		float bottom = -INFINITY;
 
 		for (int y = 0; y < numY; y++)
 		for (int x = 0; x < numX; x++) {
